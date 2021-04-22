@@ -19,6 +19,8 @@ Devise a deep neural network model to superimpose the pose estimation on real ti
 
 
 - PyCharm
+- MediaPipe
+- Library: OpenCV
 - Git
 - LaTex
 
