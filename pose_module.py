@@ -32,11 +32,12 @@ class poseDetector():
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 lmList.append([id, cx, cy])
                 if draw:
-                    cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
+                    cv2.circle(img, (cx, cy), 3, (255, 0, 0), cv2.FILLED)
         return lmList
 
 def main():
-    cap = cv2.VideoCapture('Resources/exercise1.mp4')
+    #cap = cv2.VideoCapture('Dataset/exercise1.mp4')
+    cap = cv2.VideoCapture('Dataset/CharlieChaplin.mp4')
     pTime = 0
     detector = poseDetector()
     while True:
@@ -49,7 +50,7 @@ def main():
         fps = 1 / (cTime - pTime)
         pTime = cTime
 
-        cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+        #cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
         cv2.imshow("Image", img)
 
         cv2.waitKey(1)
