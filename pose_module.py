@@ -61,7 +61,7 @@ class poseDetector():
 
 def main():
     #cap = cv2.VideoCapture('Dataset/exercise1.mp4')
-    cap = cv2.VideoCapture('Dataset/CharlieChaplin.mp4')
+    cap = cv2.VideoCapture(0)
     pTime = 0
     detector = poseDetector()
     while True:
