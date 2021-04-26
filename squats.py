@@ -39,13 +39,6 @@ while True:
                 count += 0.5
                 dir = 0
 
-        # Drawing the box --> Bar
-        #cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
-        #cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
-        #cv2.putText(img, f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
-
-        #Curls Count
-        #cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
         cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
     cv2.imshow("Image", img)

@@ -3,7 +3,7 @@ import numpy as np
 import time
 import pose_module as pm
 
-cap = cv2.VideoCapture("Dataset/squat1.mp4")
+cap = cv2.VideoCapture("Dataset/curls.mp4")
 #cap = cv2.VideoCapture(0)
 
 detector = pm.poseDetector()
@@ -11,14 +11,14 @@ count = 0
 dir = 0
 while True:
     success, img = cap.read()
-    img = cv2.resize(img, (900, 800))
+    img = cv2.resize(img, (1000, 700))
 
     img = detector.findPose(img, True)
     lmList = detector.findPosition(img, True)
 
     if len(lmList) != 0:
         # Right Arm
-        angle = detector.findAngle(img, 12, 14, 16)
+        #angle = detector.findAngle(img, 12, 14, 16)
         # Left Arm
         angle = detector.findAngle(img, 11, 13, 15)
         per = np.interp(angle, (210, 310), (0, 100))
