@@ -25,6 +25,11 @@ class MainWindow(QMainWindow):
         squat.resize(100, 32)
         squat.move(200, 50)
 
+        push = QPushButton('Push Ups', self)
+        push.clicked.connect(self.ActivatePushUps)
+        push.resize(100, 32)
+        push.move(350, 50)
+
     def ActivateDumbbell(self):
         detector = pm.poseDetector()
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -71,7 +76,7 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
     def ActivateSquat(self):
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/squat2.mp4")
 
         detector = pm.poseDetector()
         count = 0
@@ -110,6 +115,45 @@ class MainWindow(QMainWindow):
             cv2.imshow("Image", img)
             cv2.waitKey(1)
     #cv2.destroyAllWindows()
+    def ActivatePushUps(self):
+        cap = cv2.VideoCapture("Dataset/pushUps_Trim.mp4")
+
+        pTime = 0
+        detector = pm.poseDetector()
+
+        dir = 0
+        count = 0
+        while True:
+            success, img = cap.read()
+            img = detector.findPose(img)
+
+            img = cv2.resize(img, (1400, 800))
+
+            lmList = detector.findPosition(img)
+            angle = detector.findAngle(img, 11, 13, 15, True)
+
+            perc = np.interp(angle, (204, 305), (0, 100))
+            # print(angle, perc)
+
+            if perc == 100:
+                if dir == 0:
+                    count += 0.5
+                    dir = 1
+            if perc == 0:
+                if dir == 1:
+                    count += 0.5
+                    dir = 0
+
+            cv2.putText(img, str(int(count)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
+
+            # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            cv2.imshow("Image", img)
+
+            cv2.waitKey(1)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
