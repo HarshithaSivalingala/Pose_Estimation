@@ -30,6 +30,11 @@ class MainWindow(QMainWindow):
         push.resize(100, 32)
         push.move(350, 50)
 
+        jump = QPushButton('Jumping Jacks', self)
+        jump.clicked.connect(self.ActivateJumpingJacks)
+        jump.resize(100, 32)
+        jump.move(50, 90)
+
     def ActivateDumbbell(self):
         detector = pm.poseDetector()
         # cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -150,6 +155,43 @@ class MainWindow(QMainWindow):
             pTime = cTime
 
             # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            cv2.imshow("Image", img)
+
+            cv2.waitKey(1)
+
+    def ActivateJumpingJacks(self):
+        cap = cv2.VideoCapture(0)
+        detector = pm.poseDetector()
+
+        dir = 0
+        count = 0
+        while True:
+            success, img = cap.read()
+            img = detector.findPose(img, False)
+
+            img = cv2.resize(img, (1400, 800))
+
+            lmList = detector.findPosition(img, False)
+            #right hand
+            angle_hr = detector.findAngle(img, 14, 12, 24, True)
+            # left hand
+            angle_hl = detector.findAngle(img, 13, 11, 23, True)
+
+            perc = np.interp(angle_hr, (200, 345), (0, 100))
+            print(angle_hr, perc)
+
+            if perc == 100:
+                if dir == 0:
+                    count += 0.5
+                    dir = 1
+            if perc == 0:
+                if dir == 1:
+                    count += 0.5
+                    dir = 0
+
+            cv2.putText(img, str(int(angle_hr)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
             cv2.imshow("Image", img)
 
             cv2.waitKey(1)
