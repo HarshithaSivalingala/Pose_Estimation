@@ -44,9 +44,9 @@ while True:
         #cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
         #cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
 
-        cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, color, 4)
+        cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_COMPLEX, 2, color, 4)
         #cv2.putText(img, f'{int(per1)}%', (1130, 75), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
-        cv2.putText(img, str(int(count)), (280, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+        cv2.putText(img, str(int(count)), (280, 75), cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), 4)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)

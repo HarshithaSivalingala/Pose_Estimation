@@ -8,6 +8,10 @@ from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
 
+
+
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -70,9 +74,9 @@ class MainWindow(QMainWindow):
                 cv2.putText(img, f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
 
                 #Curls Count
-                cv2.rectangle(img, (0, 570), (250, 760), (0, 255, 0), cv2.FILLED)
-                cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
-
+                #cv2.rectangle(img, (0, 570), (250, 760), (0, 255, 0), cv2.FILLED)
+                cv2.putText(img, str(int(count)), (750, 66), cv2.FONT_HERSHEY_COMPLEX, 2.5, (255, 0, 0), 4)
+                cv2.putText(img, str("dumbbell Count: "), (30, 60), cv2.FONT_HERSHEY_COMPLEX, 2.5, (0, 255, 0), 4)
             cv2.imshow("image", img)
             cv2.waitKey(1)
 
@@ -109,8 +113,8 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 1
 
-                cv2.putText(img, str(int(count)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
-
+                cv2.putText(img, str(int(count)), (640, 66), cv2.FONT_HERSHEY_COMPLEX, 2.5, (255, 0, 0), 4)
+                cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_COMPLEX, 2.5, (0, 0, 255), 4)
             cv2.imshow("Image", img)
             cv2.waitKey(1)
 
@@ -143,13 +147,13 @@ class MainWindow(QMainWindow):
                     count += 0.5
                     dir = 0
 
-            cv2.putText(img, str(int(count)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-
+            cv2.putText(img, str(int(count)), (800, 75), cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), 3)
+            cv2.putText(img, str("pushup count:"), (50, 66), cv2.FONT_HERSHEY_COMPLEX, 3, (0, 255, 0), 3)
             cTime = time.time()
             fps = 1 / (cTime - pTime)
             pTime = cTime
 
-            # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            #cv2.putText(img, str(int(fps)), (640, 66), cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), 3)
             cv2.imshow("Image", img)
 
             cv2.waitKey(1)
