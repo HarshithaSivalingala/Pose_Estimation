@@ -3,8 +3,8 @@ import numpy as np
 import time
 import pose_module as pm
 
-#cap = cv2.VideoCapture("Dataset/curls.mp4")
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("Dataset/curls.mp4")
+#cap = cv2.VideoCapture(0)
 
 detector = pm.poseDetector()
 count = 0
@@ -15,7 +15,7 @@ while True:
     img = cv2.resize(img, (1300, 720))
 
     img = detector.findPose(img, False)
-    lmList = detector.findPosition(img, True)
+    lmList = detector.findPosition(img, False)
 
     if len(lmList) != 0:
         # Right Arm
