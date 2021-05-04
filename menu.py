@@ -45,6 +45,11 @@ class MainWindow(QMainWindow):
         hydrant.resize(100, 32)
         hydrant.move(350, 90)
 
+        plank = QPushButton('Up/Down Plank', self)
+        plank.clicked.connect(self.ActivatePlank)
+        plank.resize(100, 32)
+        plank.move(50, 130)
+
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -306,6 +311,48 @@ class MainWindow(QMainWindow):
 
             cv2.imshow("Image", img)
 
+            cv2.waitKey(1)
+
+    def ActivatePlank(self):
+        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        # cap = cv2.VideoCapture(0)
+
+        detector = pm.poseDetector()
+        count = 0
+        dir = 0
+        pTime = 0
+        while True:
+            success, img = cap.read()
+            img = cv2.resize(img, (1300, 800))
+            img = detector.findPose(img, False)
+            lmList = detector.findPosition(img, False)
+            if len(lmList) != 0:
+                #hand1 = detector.findAngle(img, 11, 13, 15)
+                hand = detector.findAngle(img, 12, 14, 16)
+                per = np.interp(hand, (50, 180), (0, 100))
+                #print(hand, per)
+
+                if round(per) in range(96, 100):
+                    color = (0, 0, 255)
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+                if round(per) in range(0, 8):
+                    color = (0, 0, 255)
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
+                #print(count)
+
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
+            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
+
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
 
 
