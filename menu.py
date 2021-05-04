@@ -30,10 +30,10 @@ class MainWindow(QMainWindow):
         push.resize(100, 32)
         push.move(350, 50)
 
-        jump = QPushButton('Jumping Jacks', self)
-        jump.clicked.connect(self.ActivateJumpingJacks)
-        jump.resize(100, 32)
-        jump.move(50, 90)
+        buttBridge = QPushButton('Butt Bridge', self)
+        buttBridge.clicked.connect(self.ActivateButtBridge)
+        buttBridge.resize(100, 32)
+        buttBridge.move(50, 90)
 
         lunges = QPushButton('Lunges', self)
         lunges.clicked.connect(self.ActivateLunges)
@@ -212,12 +212,17 @@ class MainWindow(QMainWindow):
 
             lmList = detector.findPosition(img, False)
             #right hand
-            angle_hr = detector.findAngle(img, 14, 12, 24, True)
+            angle_rh = detector.findAngle(img, 14, 12, 24, True)
             # left hand
-            angle_hl = detector.findAngle(img, 13, 11, 23, True)
+            angle_lh = detector.findAngle(img, 13, 11, 23, True)
+            # right leg
+            angle_rl = detector.findAngle(img, 23, 24, 26, True)
+            angle_ll = detector.findAngle(img, 24, 23, 25, True)
 
-            perc = np.interp(angle_hr, (200, 345), (0, 100))
-            print(angle_hr, perc)
+            #perc_hand = np.interp(angle_ll, (180, 330), (0, 100))
+            perc_leg = np.interp(angle_ll, (180, 330), (0, 100))
+
+            print(angle_ll, perc)
 
             if perc == 100:
                 if dir == 0:
@@ -228,11 +233,42 @@ class MainWindow(QMainWindow):
                     count += 0.5
                     dir = 0
 
-            cv2.putText(img, str(int(angle_hr)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            cv2.putText(img, str(int(angle_ll)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
             cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
 
             cv2.imshow("Image", img)
 
+            cv2.waitKey(1)
+
+    def ActivateButtBridge(self):
+        cap = cv2.VideoCapture(0)
+
+        detector = pm.poseDetector()
+        count = 0
+        dir = 0
+        while True:
+            success, img = cap.read()
+            img = cv2.resize(img, (1000, 800))
+            img = detector.findPose(img, True)
+            lmList = detector.findPosition(img, True)
+
+            if True:
+                angle = detector.findAngle(img, 11, 23, 25)
+                per = np.interp(angle, (165, 70), (0, 100))
+
+                color = (0, 0, 255)
+                if per1 == 100:
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
+                if per1 == 0:
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+
+                cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
+
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
 
     def ActivateFireHydrant(self):
