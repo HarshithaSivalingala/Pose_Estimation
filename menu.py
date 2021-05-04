@@ -241,6 +241,7 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
     def ActivateButtBridge(self):
+        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
         cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
@@ -249,24 +250,26 @@ class MainWindow(QMainWindow):
         while True:
             success, img = cap.read()
             img = cv2.resize(img, (1000, 800))
-            img = detector.findPose(img, True)
-            lmList = detector.findPosition(img, True)
+            img = detector.findPose(img, False)
+            lmList = detector.findPosition(img, False)
 
-            if True:
+            if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(angle, (165, 70), (0, 100))
+                per = np.interp(angle, (128, 180), (0, 100))
+                print(angle, per)
 
-                color = (0, 0, 255)
-                if per1 == 100:
-                    if dir == 1:
-                        count += 0.5
-                        dir = 0
-                if per1 == 0:
-                    if dir == 0:
-                        count += 0.5
-                        dir = 1
+            color = (0, 0, 255)
+            if round(per) in range(98, 100):
+                if dir == 0:
+                    count += 0.5
+                    dir = 1
+            if round(per) in range(0, 10):
+                if dir == 1:
+                    count += 0.5
+                    dir = 0
 
-                cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
+            #cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
+            cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
             cv2.imshow("Image", img)
             cv2.waitKey(1)
@@ -350,8 +353,8 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
     def ActivatePlank(self):
-        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        # cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -365,7 +368,7 @@ class MainWindow(QMainWindow):
             if len(lmList) != 0:
                 #hand1 = detector.findAngle(img, 11, 13, 15)
                 hand = detector.findAngle(img, 12, 14, 16)
-                per = np.interp(hand, (50, 180), (0, 100))
+                per = np.interp(hand, (90, 180), (0, 100))
                 #print(hand, per)
 
                 if round(per) in range(96, 100):
