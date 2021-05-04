@@ -231,7 +231,7 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
     def ActivateFireHydrant(self):
-        cap = cv2.VideoCapture("Dataset/Fire_hydrant.mp4")
+        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
         # cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
