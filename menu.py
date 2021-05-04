@@ -35,6 +35,11 @@ class MainWindow(QMainWindow):
         jump.resize(100, 32)
         jump.move(50, 90)
 
+        lunges = QPushButton('Lunges', self)
+        lunges.clicked.connect(self.ActivateLunges)
+        lunges.resize(100, 32)
+        lunges.move(200, 90)
+
     def ActivateDumbbell(self):
         detector = pm.poseDetector()
         # cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -195,6 +200,44 @@ class MainWindow(QMainWindow):
             cv2.imshow("Image", img)
 
             cv2.waitKey(1)
+
+    def ActivateLunges(self):
+        cap = cv2.VideoCapture(0)
+        detector = pm.poseDetector()
+
+        dir = 0
+        count = 0
+        while True:
+            success, img = cap.read()
+            img = detector.findPose(img, False)
+            img = cv2.resize(img, (1400, 800))
+
+            lmList = detector.findPosition(img, False)
+            # right leg
+            r_angle = detector.findAngle(img, 24, 26, 28, True)
+            # left leg
+            l_angle = detector.findAngle(img, 23, 25, 27, True)
+            perc = np.interp(r_angle, (170, 90), (0, 100))
+            print(r_angle, perc)
+
+            if perc == 100:
+                if dir == 1:
+                    count += 0.5
+                    dir = 0
+            if perc == 0:
+                 if dir == 0:
+                    count += 0.5
+                    dir = 1
+
+            cv2.putText(img, str(int(r_angle)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+            cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
+            cv2.imshow("Image", img)
+
+            cv2.waitKey(1)
+
+
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

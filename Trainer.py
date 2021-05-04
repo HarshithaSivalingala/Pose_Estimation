@@ -3,8 +3,8 @@ import numpy as np
 import time
 import pose_module as pm
 
-cap = cv2.VideoCapture("Dataset/curls.mp4")
-#cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture("Dataset/curls.mp4")
+cap = cv2.VideoCapture(0)
 
 detector = pm.poseDetector()
 count = 0

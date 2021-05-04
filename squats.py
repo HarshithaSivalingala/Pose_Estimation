@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import time
 import pose_module as pm
+import atexit
 
 #cap = cv2.VideoCapture("Dataset/squat_main.mp4")
 cap = cv2.VideoCapture(0)
@@ -55,3 +56,4 @@ while True:
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
+    atexit.register(poseDetector)
