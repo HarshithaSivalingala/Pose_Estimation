@@ -7,6 +7,9 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,39 +19,109 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Menu")
 
         dumbbell = QPushButton('Dumbbell', self)
+        dumbbell.setFont(QFont('Castellar', 15))
+        dumbbell.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : yellow;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightyellow;"
+                             "}")
+        #dumbbell.setStyleSheet("background-color : yellow")
         dumbbell.clicked.connect(self.ActivateDumbbell)
-        dumbbell.resize(100, 32)
+        dumbbell.resize(185, 32)
         dumbbell.move(50, 50)
 
         squat = QPushButton('Squats', self)
+        squat.setFont(QFont('Castellar', 15))
+        squat.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : pink;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightpink;"
+                             "}")
+        #squat.setStyleSheet("background-color : pink")
         squat.clicked.connect(self.ActivateSquat)
-        squat.resize(100, 32)
-        squat.move(200, 50)
+        squat.resize(150, 32)
+        squat.move(50, 100)
 
         push = QPushButton('Push Ups', self)
+        push.setFont(QFont('Castellar', 15))
+        push.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : yellow;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightyellow;"
+                             "}")
+        #push.setStyleSheet("background-color : yellow")
         push.clicked.connect(self.ActivatePushUps)
-        push.resize(100, 32)
-        push.move(350, 50)
+        push.resize(170, 32)
+        push.move(50, 150)
 
         buttBridge = QPushButton('Butt Bridge', self)
+        buttBridge.setFont(QFont('Castellar', 15))
+        buttBridge.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : pink;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightpink;"
+                             "}")
+        #buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.ActivateButtBridge)
-        buttBridge.resize(100, 32)
-        buttBridge.move(50, 90)
+        buttBridge.resize(225, 32)
+        buttBridge.move(50, 200)
 
         lunges = QPushButton('Lunges', self)
+        lunges.setFont(QFont('Castellar', 15))
+        lunges.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : yellow;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightyellow;"
+                             "}")
+        #lunges.setStyleSheet("background-color : yellow")
         lunges.clicked.connect(self.ActivateLunges)
-        lunges.resize(100, 32)
-        lunges.move(200, 90)
+        lunges.resize(150, 32)
+        lunges.move(50, 250)
 
         hydrant = QPushButton('Fire Hydrant', self)
+        hydrant.setFont(QFont('Castellar', 15))
+        hydrant.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : pink;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightpink;"
+                             "}")
+        #hydrant.setStyleSheet("background-color : pink")
         hydrant.clicked.connect(self.ActivateFireHydrant)
-        hydrant.resize(100, 32)
-        hydrant.move(350, 90)
+        hydrant.resize(250, 32)
+        hydrant.move(50, 300)
 
         plank = QPushButton('Up/Down Plank', self)
+        plank.setFont(QFont('Castellar', 15))
+        plank.setStyleSheet("QPushButton"
+                             "{"
+                             "background-color : yellow;"
+                             "}"
+                             "QPushButton::hover"
+                             "{"
+                             "background-color : lightyellow;"
+                             "}")
+        #plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.ActivatePlank)
-        plank.resize(100, 32)
-        plank.move(50, 130)
+        plank.resize(280, 32)
+        plank.move(50, 350)
 
 
     def ActivateDumbbell(self):
@@ -318,38 +391,50 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
     def ActivateLunges(self):
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+        #cap = cv2.VideoCapture(0)
         detector = pm.poseDetector()
-
-        dir = 0
         count = 0
+        dir = 0
+        pTime = 0
         while True:
             success, img = cap.read()
+            img = cv2.resize(img, (1300, 750))
             img = detector.findPose(img, False)
-            img = cv2.resize(img, (1400, 800))
-
             lmList = detector.findPosition(img, False)
-            # right leg
-            r_angle = detector.findAngle(img, 24, 26, 28, True)
-            # left leg
-            l_angle = detector.findAngle(img, 23, 25, 27, True)
-            perc = np.interp(r_angle, (170, 90), (0, 100))
-            print(r_angle, perc)
+            if len(lmList) != 0:
+                # Left Leg
+                leg2 = detector.findAngle(img, 23, 25, 27)
+                per2 = np.interp(leg2, (190, 280), (0, 100))
+                #print(leg2, per2)
+                #Right leg
+                leg1 = detector.findAngle(img, 24, 26, 28)
+                per1 = np.interp(leg1, (190, 290), (0, 100))
+                #print(leg1, per1, leg2, per2)
 
-            if perc == 100:
-                if dir == 1:
-                    count += 0.5
-                    dir = 0
-            if perc == 0:
-                 if dir == 0:
-                    count += 0.5
-                    dir = 1
+                # Checking count
+                color = (255, 0, 255)
+                if (round(per1) in range(80, 100)) and (round(per2) in range(40, 75)):
+                    color = (0, 0, 255)
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+                if (round(per1) in range(0, 10)) and (round(per2) in range(0, 10)):
+                    color = (0, 0, 255)
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
+                print(count)
 
-            cv2.putText(img, str(int(r_angle)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-            cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
+            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
             cv2.imshow("Image", img)
-
             cv2.waitKey(1)
 
     def ActivatePlank(self):
