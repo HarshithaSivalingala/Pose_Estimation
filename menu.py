@@ -50,6 +50,10 @@ class MainWindow(QMainWindow):
         plank.resize(100, 32)
         plank.move(50, 130)
 
+        crunch = QPushButton('crunches', self)
+        crunch.clicked.connect(self.crunches)
+        crunch.resize(100, 32)
+        crunch.move(50, 130)
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -394,6 +398,49 @@ class MainWindow(QMainWindow):
             cv2.imshow("Image", img)
             cv2.waitKey(1)
 
+
+    def crunches(self):
+        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        cap = cv2.VideoCapture(0)
+
+        detector = pm.poseDetector()
+        count = 0
+        dir = 0
+        pTime = 0
+        while True:
+            success, img = cap.read()
+            img = cv2.resize(img, (1300, 720))
+            img = detector.findPose(img, False)
+            lmList = detector.findPosition(img, False)
+            if len(lmList) != 0:
+                side1 = detector.findAngle(img, 12, 24, 26 )
+                #side2 = detector.findAngle(img, 11, 23, 25)
+                per = np.interp(side1, (60, 135), (0, 100))
+                # print(side, per)
+
+                # Checking count
+                color = (255, 0, 255)
+                if round(per) in range(95, 100):
+                    color = (0, 0, 255)
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+                if round(per) in range(0, 10):
+                    color = (0, 0, 255)
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
+
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
+            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
+
+            cv2.imshow("Image", img)
+            cv2.waitKey(1)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
