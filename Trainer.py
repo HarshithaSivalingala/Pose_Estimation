@@ -15,7 +15,7 @@ while True:
     img = cv2.resize(img, (1300, 720))
 
     img = detector.findPose(img, False)
-    lmList = detector.findPosition(img, True)
+    lmList = detector.findPosition(img, False)
 
     if len(lmList) != 0:
         # Right Arm
