@@ -400,7 +400,7 @@ class MainWindow(QMainWindow):
 
 
     def crunches(self):
-        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        #cap = cv2.VideoCapture("")
         cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
