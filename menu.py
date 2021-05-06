@@ -124,9 +124,19 @@ class MainWindow(QMainWindow):
         plank.move(50, 350)
 
         crunch = QPushButton('crunches', self)
-        crunch.clicked.connect(self.crunches)
-        crunch.resize(100, 32)
-        crunch.move(50, 130)
+        crunch.setFont(QFont('Castellar', 15))
+        crunch.setStyleSheet("QPushButton"
+                            "{"
+                            "background-color : yellow;"
+                            "}"
+                            "QPushButton::hover"
+                            "{"
+                            "background-color : lightyellow;"
+                            "}")
+        # plank.setStyleSheet("background-color : yellow")
+        crunch.clicked.connect(self.Activatecrunches)
+        crunch.resize(280, 32)
+        crunch.move(50, 350)
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -484,7 +494,7 @@ class MainWindow(QMainWindow):
             cv2.waitKey(1)
 
 
-    def crunches(self):
+    def Activatecrunches(self):
         #cap = cv2.VideoCapture("")
         cap = cv2.VideoCapture(0)
 
