@@ -10,12 +10,13 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from reference_videos import references
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.setMinimumSize(QSize(500, 500))
+        self.setMinimumSize(QSize(700, 900))
         self.setWindowTitle("Menu")
 
         dumbbell = QPushButton('Dumbbell', self)
@@ -33,6 +34,14 @@ class MainWindow(QMainWindow):
         dumbbell.resize(185, 32)
         dumbbell.move(50, 50)
 
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 40)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openDumbbell)
+
         squat = QPushButton('Squats', self)
         squat.setFont(QFont('Castellar', 15))
         squat.setStyleSheet("QPushButton"
@@ -46,7 +55,15 @@ class MainWindow(QMainWindow):
         #squat.setStyleSheet("background-color : pink")
         squat.clicked.connect(self.ActivateSquat)
         squat.resize(150, 32)
-        squat.move(50, 100)
+        squat.move(50, 150)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 140)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openSquat)
 
         push = QPushButton('Push Ups', self)
         push.setFont(QFont('Castellar', 15))
@@ -61,7 +78,15 @@ class MainWindow(QMainWindow):
         #push.setStyleSheet("background-color : yellow")
         push.clicked.connect(self.ActivatePushUps)
         push.resize(170, 32)
-        push.move(50, 150)
+        push.move(50, 250)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 240)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openPushUps)
 
         buttBridge = QPushButton('Butt Bridge', self)
         buttBridge.setFont(QFont('Castellar', 15))
@@ -76,7 +101,15 @@ class MainWindow(QMainWindow):
         #buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.ActivateButtBridge)
         buttBridge.resize(225, 32)
-        buttBridge.move(50, 200)
+        buttBridge.move(50, 350)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 340)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openButtBridge)
 
         lunges = QPushButton('Lunges', self)
         lunges.setFont(QFont('Castellar', 15))
@@ -91,7 +124,15 @@ class MainWindow(QMainWindow):
         #lunges.setStyleSheet("background-color : yellow")
         lunges.clicked.connect(self.ActivateLunges)
         lunges.resize(150, 32)
-        lunges.move(50, 250)
+        lunges.move(50, 450)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 440)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openLunges)
 
         hydrant = QPushButton('Fire Hydrant', self)
         hydrant.setFont(QFont('Castellar', 15))
@@ -106,7 +147,15 @@ class MainWindow(QMainWindow):
         #hydrant.setStyleSheet("background-color : pink")
         hydrant.clicked.connect(self.ActivateFireHydrant)
         hydrant.resize(250, 32)
-        hydrant.move(50, 300)
+        hydrant.move(50, 550)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 540)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openHydrant)
 
         plank = QPushButton('Up/Down Plank', self)
         plank.setFont(QFont('Castellar', 15))
@@ -121,22 +170,38 @@ class MainWindow(QMainWindow):
         #plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.ActivatePlank)
         plank.resize(280, 32)
-        plank.move(50, 350)
+        plank.move(50, 650)
 
-        crunch = QPushButton('crunches', self)
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 640)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openPlank)
+
+        crunch = QPushButton('Crunches', self)
         crunch.setFont(QFont('Castellar', 15))
         crunch.setStyleSheet("QPushButton"
                             "{"
-                            "background-color : yellow;"
+                            "background-color : pink;"
                             "}"
                             "QPushButton::hover"
                             "{"
-                            "background-color : lightyellow;"
+                            "background-color : lightpink;"
                             "}")
         # plank.setStyleSheet("background-color : yellow")
         crunch.clicked.connect(self.Activatecrunches)
         crunch.resize(280, 32)
-        crunch.move(50, 350)
+        crunch.move(50, 750)
+
+        ref = QPushButton('', self)
+        ref.setGeometry(10, 150, 100, 100)
+        ref.resize(50, 50)
+        ref.setIcon(QIcon("Resources/vidIcon.png"))
+        ref.move(350, 740)
+        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
+        ref.clicked.connect(references.openDumbbell)
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -152,6 +217,7 @@ class MainWindow(QMainWindow):
 
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
+
 
             if len(lmList) != 0:
                 # Right Arm
@@ -175,21 +241,25 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                # Drawing the box --> Bar
-                cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
-                cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
-                cv2.putText(img, f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
 
-                # Curls Count
-                cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
-                cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
+                target = 4
+                cv2.putText(img, "Count: " + str(int(count)), (250, 120), cv2.FONT_HERSHEY_PLAIN, 4, (255, 0, 0), 4)
+                cv2.putText(img, "Target: " + str(target), (250, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
+                if count == target:
+                    cv2.putText(img, "You did it!", (300, 200), cv2.FONT_HERSHEY_PLAIN, 5, (0, 200, 0), 5)
+
             cTime = time.time()
             fps = 1 / (cTime - pTime)
             pTime = cTime
-            #cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateSquat(self):
         cap = cv2.VideoCapture("Dataset/squat_main.mp4")
@@ -229,21 +299,20 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                # creating bar
-                # cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
-                # cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
-
                 cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, color, 4)
-                # cv2.putText(img, f'{int(per1)}%', (1130, 75), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (280, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cTime = time.time()
             fps = 1 / (cTime - pTime)
             pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
         cap = cv2.VideoCapture("Dataset/pushUps2.mp4")
@@ -263,7 +332,7 @@ class MainWindow(QMainWindow):
             angle = detector.findAngle(img, 11, 13, 15, True)
 
             perc = np.interp(angle, (204, 305), (0, 100))
-            # print(angle, perc)
+            print(angle, perc)
 
             if perc == 100:
                 if dir == 0:
@@ -281,9 +350,13 @@ class MainWindow(QMainWindow):
             pTime = cTime
 
             # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-            cv2.imshow("Image", img)
-
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateJumpingJacks(self):
         cap = cv2.VideoCapture(0)
@@ -323,13 +396,17 @@ class MainWindow(QMainWindow):
             cv2.putText(img, str(int(angle_ll)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
             cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
 
-            cv2.imshow("Image", img)
-
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -337,8 +414,8 @@ class MainWindow(QMainWindow):
         while True:
             success, img = cap.read()
             img = cv2.resize(img, (1000, 800))
-            img = detector.findPose(img, False)
-            lmList = detector.findPosition(img, False)
+            img = detector.findPose(img, True)
+            lmList = detector.findPosition(img, True)
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
@@ -358,8 +435,13 @@ class MainWindow(QMainWindow):
             #cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
             cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
         cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
@@ -401,8 +483,13 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateLunges(self):
         cap = cv2.VideoCapture("Dataset/lunge1.mp4")
@@ -448,8 +535,13 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivatePlank(self):
         #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
@@ -490,9 +582,13 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
 
+        cap.release()
+        cv2.destroyAllWindows()
 
     def Activatecrunches(self):
         #cap = cv2.VideoCapture("")
@@ -534,8 +630,13 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Exercise", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
