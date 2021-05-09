@@ -86,7 +86,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box2.addItems(list)
         self.combo_box2.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box2.setFont(font)
 
         squat = QPushButton('Squats', self)
@@ -127,7 +127,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         push = QPushButton('Push Ups', self)
@@ -168,7 +168,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         buttBridge = QPushButton('Butt Bridge', self)
@@ -209,7 +209,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         # creating a button
@@ -251,7 +251,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         # Creating a button
@@ -293,7 +293,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         # creating a button
@@ -335,7 +335,7 @@ class MainWindow(QMainWindow):
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
-        font = QFont('Arial', 10)
+        font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         # creating a button
