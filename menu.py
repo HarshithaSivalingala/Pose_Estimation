@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QMessageBox
-import trial as tr
+import Popup as po
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -418,7 +418,7 @@ class MainWindow(QMainWindow):
                     #self.pushButton = QtWidgets.QPushButton("You have a msg")
                     #cv2.rectangle(img, (450, 300), (950, 400), (255, 255, 255), cv2.FILLED)
                     #cv2.putText(img, "You have reached the target", (460, 350), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
-                    win = tr.Window()
+                    win = po.Window()
                     cv2.waitKey(30000)
 
 
