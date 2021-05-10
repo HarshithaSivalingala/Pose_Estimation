@@ -412,12 +412,9 @@ class MainWindow(QMainWindow):
                         dir = 0
                 print(count)
 
-                target = 5
+                target = 2
 
                 if count == target:
-                    #self.pushButton = QtWidgets.QPushButton("You have a msg")
-                    #cv2.rectangle(img, (450, 300), (950, 400), (255, 255, 255), cv2.FILLED)
-                    #cv2.putText(img, "You have reached the target", (460, 350), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
                     win = po.Window()
                     cv2.waitKey(30000)
 

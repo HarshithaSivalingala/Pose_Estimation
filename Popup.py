@@ -2,40 +2,40 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
-
+from PyQt5.QtWidgets import QLabel
+from menu import *
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.setStyleSheet("background-color: lightpink;")
         self.setMinimumSize(QSize(400, 200))
 
         # setting title
-        self.setWindowTitle("You have a message!!!!")
+        self.setWindowTitle("You have a message")
+
+        self.label = QLabel('Congratulations!!!', self)
+        #self.label.setAlignment(Qt.AlignCenter)
+        self.label.setFont(QFont('Arial', 15))
+        self.label.resize(200, 50)  # (width, height)
+        self.label.move(100, 10)
+
+        self.label1 = QLabel("You have reached the target", self)
+        self.label1.setFont(QFont('Arial', 12))
+        self.label1.resize(400, 30)
+        self.label1.move(80, 50)
+
         self.showbutton()
         self.show()
 
-    def show_popup(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("Message")
-        msg.setText("Congratulations Again! You have reached the target")
-        msg.setIcon(QMessageBox.Information)
-        msg.setStandardButtons(QMessageBox.Ok | QMessageBox. Retry | QMessageBox.Cancel)
-        msg.buttonClicked.connect(self.popup_button)
-        returnValue = msg.exec_()
-        if returnValue == QMessageBox.Ok:
-            print("OK clicked")
-
-    def popup_button(self, i):
-        print(i.text())
 
     def showbutton(self):
-        # cv2.putText(img, "yes", (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
-        pushButton = QPushButton("Congratulations !!!", self)
-        pushButton.pressed.connect(self.show_popup)
-        pushButton.resize(350, 60)
-        pushButton.move(20, 60)
-        pushButton.setFont(QFont('Castellar', 15))
-        pushButton.setStyleSheet("QPushButton"
+        pushButton1 = QPushButton(" Try Again", self)
+        #pushButton.pressed.connect(self.show_popup)
+        pushButton1.resize(120, 40)
+        pushButton1.move(45, 100)
+        pushButton1.setFont(QFont('Times', 10))
+        pushButton1.setStyleSheet("QPushButton"
                              "{"
                              "background-color : yellow;"
                              "}"
@@ -43,6 +43,22 @@ class Window(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
+        #pushButton1.pressed.connect(mn.ActivateDumbbell)
+
+        pushButton2 = QPushButton("Finish", self)
+        # pushButton.pressed.connect(self.show_popup)
+        pushButton2.resize(120, 40)
+        pushButton2.move(230, 100)
+        pushButton2.setFont(QFont('Times', 10))
+        pushButton2.setStyleSheet("QPushButton"
+                                  "{"
+                                  "background-color : yellow;"
+                                  "}"
+                                  "QPushButton::hover"
+                                  "{"
+                                  "background-color : lightyellow;"
+                                  "}")
+        pushButton2.pressed.connect(self.close)
 
 
 
