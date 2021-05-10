@@ -10,7 +10,8 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from datetime import datetime
+from PyQt5.QtWidgets import QMessageBox
+import trial as tr
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -29,8 +30,6 @@ class MainWindow(QMainWindow):
 
 
         self.show()
-
-
 
 
     def Dumbbell(self):
@@ -370,12 +369,12 @@ class MainWindow(QMainWindow):
         elif text == "Camera":
             self.Activatecrunches()
 
-
-    # Pose estimating workouts
+        # Pose estimating workouts
 
     def ActivateDumbbell(self):
-        #cap = cv2.VideoCapture("Dataset/curls.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/curls.mp4")
+        #cap = cv2.VideoCapture(0)
+
 
         detector = pm.poseDetector()
         count = 0
@@ -411,12 +410,16 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
+                print(count)
 
-                target = 2
+                target = 5
 
-                #if count == target:
-                   # cv2.putText(img, "You have reached the target!", (40, 300), cv2.FONT_HERSHEY_PLAIN, 3,  (255, 0, 0), 5)
-                   # cv2.waitKey(1000)
+                if count == target:
+                    #self.pushButton = QtWidgets.QPushButton("You have a msg")
+                    #cv2.rectangle(img, (450, 300), (950, 400), (255, 255, 255), cv2.FILLED)
+                    #cv2.putText(img, "You have reached the target", (460, 350), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+                    win = tr.Window()
+                    cv2.waitKey(30000)
 
 
                 # Drawing the box --> Bar
@@ -782,6 +785,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    App = QApplication(sys.argv)
     mainWin = MainWindow()
     mainWin.show()
     sys.exit(app.exec_())
