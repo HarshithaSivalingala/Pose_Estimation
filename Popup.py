@@ -3,7 +3,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 from PyQt5.QtWidgets import QLabel
-from menu import *
+from menu import MainWindow
+
 
 class Window(QMainWindow):
     def __init__(self):
@@ -43,7 +44,7 @@ class Window(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
-        #pushButton1.pressed.connect(mn.ActivateDumbbell)
+        #pushButton1.pressed.connect(MainWindow.ActivateDumbbell)
 
         pushButton2 = QPushButton("Finish", self)
         # pushButton.pressed.connect(self.show_popup)
