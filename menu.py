@@ -10,107 +10,208 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from reference_videos import references
+from PyQt5.QtWidgets import QMessageBox
+import trial as tr
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.setMinimumSize(QSize(700, 900))
+        self.setMinimumSize(QSize(500, 500))
         self.setWindowTitle("Menu")
+        self.Dumbbell()
+        self.Squat()
+        self.PushUp()
+        self.Buttbridge()
+        self.Lunges()
+        self.Hydrant()
+        self.Plank()
+        self.Crunch()
 
+
+        self.show()
+
+
+    def Dumbbell(self):
+        # Setting up a combo list
+        self.comboBox1 = QComboBox(self)
+        self.comboBox1.setGeometry(50, 50, 185, 32)
+        list = ["Demo", "Camera"]
+        self.comboBox1.addItems(list)
+        self.comboBox1.setEditable(True)
+        font = QFont('Arial', 11)
+        self.comboBox1.setFont(font)
+
+       #role1 = self.comboBox1.setItemData(0)
+
+        # Creating a main button
         dumbbell = QPushButton('Dumbbell', self)
         dumbbell.setFont(QFont('Castellar', 15))
         dumbbell.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : yellow;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightyellow;"
-                             "}")
-        #dumbbell.setStyleSheet("background-color : yellow")
-        dumbbell.clicked.connect(self.ActivateDumbbell)
+                               "{"
+                               "background-color : yellow;"
+                               "}"
+                               "QPushButton::hover"
+                               "{"
+                               "background-color : lightyellow;"
+                               "}")
+        # dumbbell.setStyleSheet("background-color : yellow")
+        dumbbell.pressed.connect(self.comboBox1.showPopup)
         dumbbell.resize(185, 32)
         dumbbell.move(50, 50)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 40)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openDumbbell)
+
+        self.comboBox1.activated[str].connect(self.OnActivateDumbbell)
+
+    def OnActivateDumbbell(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/curls.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivateDumbbell()
+
+
+    def Squat(self):
+        # Setting up a combo list
+        self.combo_box2 = QComboBox(self)
+        self.combo_box2.setGeometry(50, 100, 150, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box2.addItems(list)
+        self.combo_box2.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box2.setFont(font)
 
         squat = QPushButton('Squats', self)
         squat.setFont(QFont('Castellar', 15))
         squat.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : pink;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightpink;"
-                             "}")
-        #squat.setStyleSheet("background-color : pink")
-        squat.clicked.connect(self.ActivateSquat)
+                            "{"
+                            "background-color : pink;"
+                            "}"
+                            "QPushButton::hover"
+                            "{"
+                            "background-color : lightpink;"
+                            "}")
+        # squat.setStyleSheet("background-color : pink")
+        squat.clicked.connect(self.combo_box2.showPopup)
         squat.resize(150, 32)
-        squat.move(50, 150)
+        squat.move(50, 100)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 140)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openSquat)
+        self.combo_box2.activated[str].connect(self.OnActivateSquat)
+
+    def OnActivateSquat(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/squat_main.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivateSquat()
+
+    def PushUp(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 150, 170, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
 
         push = QPushButton('Push Ups', self)
         push.setFont(QFont('Castellar', 15))
         push.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : yellow;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightyellow;"
-                             "}")
-        #push.setStyleSheet("background-color : yellow")
-        push.clicked.connect(self.ActivatePushUps)
+                           "{"
+                           "background-color : yellow;"
+                           "}"
+                           "QPushButton::hover"
+                           "{"
+                           "background-color : lightyellow;"
+                           "}")
+        # push.setStyleSheet("background-color : yellow")
+        push.clicked.connect(self.combo_box.showPopup)
         push.resize(170, 32)
-        push.move(50, 250)
+        push.move(50, 150)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 240)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openPushUps)
+        self.combo_box.activated[str].connect(self.OnActivatePushUp)
+
+    def OnActivatePushUp(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/pushUps1.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivatePushUps()
+
+    def Buttbridge(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 200, 225, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
 
         buttBridge = QPushButton('Butt Bridge', self)
         buttBridge.setFont(QFont('Castellar', 15))
         buttBridge.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : pink;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightpink;"
-                             "}")
-        #buttBridge.setStyleSheet("background-color : pink")
-        buttBridge.clicked.connect(self.ActivateButtBridge)
+                                 "{"
+                                 "background-color : pink;"
+                                 "}"
+                                 "QPushButton::hover"
+                                 "{"
+                                 "background-color : lightpink;"
+                                 "}")
+        # buttBridge.setStyleSheet("background-color : pink")
+        buttBridge.clicked.connect(self.combo_box.showPopup)
         buttBridge.resize(225, 32)
-        buttBridge.move(50, 350)
+        buttBridge.move(50, 200)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 340)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openButtBridge)
+        self.combo_box.activated[str].connect(self.OnActivateButtBridge)
 
+    def OnActivateButtBridge(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivateButtBridge()
+
+    def Lunges(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 250, 150, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
+
+        # creating a button
         lunges = QPushButton('Lunges', self)
         lunges.setFont(QFont('Castellar', 15))
         lunges.setStyleSheet("QPushButton"
@@ -121,45 +222,125 @@ class MainWindow(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
-        #lunges.setStyleSheet("background-color : yellow")
-        lunges.clicked.connect(self.ActivateLunges)
+        # lunges.setStyleSheet("background-color : yellow")
+        lunges.clicked.connect(self.combo_box.showPopup)
         lunges.resize(150, 32)
-        lunges.move(50, 450)
+        lunges.move(50, 250)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 440)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openLunges)
+        self.combo_box.activated[str].connect(self.OnActivateLunges)
 
+    def OnActivateLunges(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivateLunges()
+
+    def Hydrant(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 300, 250, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
+
+        # Creating a button
         hydrant = QPushButton('Fire Hydrant', self)
         hydrant.setFont(QFont('Castellar', 15))
         hydrant.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : pink;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightpink;"
-                             "}")
-        #hydrant.setStyleSheet("background-color : pink")
-        hydrant.clicked.connect(self.ActivateFireHydrant)
+                              "{"
+                              "background-color : pink;"
+                              "}"
+                              "QPushButton::hover"
+                              "{"
+                              "background-color : lightpink;"
+                              "}")
+        # hydrant.setStyleSheet("background-color : pink")
+        hydrant.clicked.connect(self.combo_box.showPopup)
         hydrant.resize(250, 32)
-        hydrant.move(50, 550)
+        hydrant.move(50, 300)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 540)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openHydrant)
+        self.combo_box.activated[str].connect(self.OnActivateHydrant)
 
+    def OnActivateHydrant(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivateFireHydrant()
+
+    def Plank(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 350, 280, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
+
+        # creating a button
         plank = QPushButton('Up/Down Plank', self)
         plank.setFont(QFont('Castellar', 15))
         plank.setStyleSheet("QPushButton"
+                            "{"
+                            "background-color : yellow;"
+                            "}"
+                            "QPushButton::hover"
+                            "{"
+                            "background-color : lightyellow;"
+                            "}")
+        # plank.setStyleSheet("background-color : yellow")
+        plank.clicked.connect(self.combo_box.showPopup)
+        plank.resize(280, 32)
+        plank.move(50, 350)
+
+        self.combo_box.activated[str].connect(self.OnActivatePlank)
+
+    def OnActivatePlank(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.ActivatePlank()
+
+    def Crunch(self):
+        # Setting up a combo list
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(50, 400, 190, 32)
+        list = ["Demo", "Camera"]
+        self.combo_box.addItems(list)
+        self.combo_box.setEditable(True)
+        font = QFont('Arial', 11)
+        self.combo_box.setFont(font)
+
+        # creating a button
+        crunch = QPushButton('crunches', self)
+        crunch.setFont(QFont('Castellar', 15))
+        crunch.setStyleSheet("QPushButton"
                              "{"
                              "background-color : yellow;"
                              "}"
@@ -167,50 +348,39 @@ class MainWindow(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
-        #plank.setStyleSheet("background-color : yellow")
-        plank.clicked.connect(self.ActivatePlank)
-        plank.resize(280, 32)
-        plank.move(50, 650)
-
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 640)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openPlank)
-
-        crunch = QPushButton('Crunches', self)
-        crunch.setFont(QFont('Castellar', 15))
-        crunch.setStyleSheet("QPushButton"
-                            "{"
-                            "background-color : pink;"
-                            "}"
-                            "QPushButton::hover"
-                            "{"
-                            "background-color : lightpink;"
-                            "}")
         # plank.setStyleSheet("background-color : yellow")
-        crunch.clicked.connect(self.Activatecrunches)
-        crunch.resize(280, 32)
-        crunch.move(50, 750)
+        crunch.clicked.connect(self.combo_box.showPopup)
+        crunch.resize(190, 32)
+        crunch.move(50, 400)
 
-        ref = QPushButton('', self)
-        ref.setGeometry(10, 150, 100, 100)
-        ref.resize(50, 50)
-        ref.setIcon(QIcon("Resources/vidIcon.png"))
-        ref.move(350, 740)
-        ref.setStyleSheet("border - radius: 50;border : 2px solid black")
-        ref.clicked.connect(references.openDumbbell)
+        self.combo_box.activated[str].connect(self.OnActivateCrunch)
+
+    def OnActivateCrunch(self, text):
+        if text == "Demo":
+            cap = cv2.VideoCapture("Dataset/skipping1.mp4")
+            while True:
+                success, img = cap.read()
+                img = cv2.resize(img, (1300, 720))
+                if success == True:
+                    cv2.imshow("Image", img)
+                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                        break
+
+        elif text == "Camera":
+            self.Activatecrunches()
+
+        # Pose estimating workouts
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
         #cap = cv2.VideoCapture(0)
 
+
         detector = pm.poseDetector()
         count = 0
         dir = 0
         pTime = 0
+
         while True:
             success, img = cap.read()
             img = cv2.resize(img, (1300, 720))
@@ -240,26 +410,33 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
+                print(count)
 
-
-                target = 4
-                cv2.putText(img, "Count: " + str(int(count)), (250, 120), cv2.FONT_HERSHEY_PLAIN, 4, (255, 0, 0), 4)
-                cv2.putText(img, "Target: " + str(target), (250, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+                target = 5
 
                 if count == target:
-                    cv2.putText(img, "You did it!", (300, 200), cv2.FONT_HERSHEY_PLAIN, 5, (0, 200, 0), 5)
+                    #self.pushButton = QtWidgets.QPushButton("You have a msg")
+                    #cv2.rectangle(img, (450, 300), (950, 400), (255, 255, 255), cv2.FILLED)
+                    #cv2.putText(img, "You have reached the target", (460, 350), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+                    win = tr.Window()
+                    cv2.waitKey(30000)
 
+
+                # Drawing the box --> Bar
+                cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
+                cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
+                cv2.putText(img, f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
+
+                # Curls Count
+                cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
+                cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
             cTime = time.time()
             fps = 1 / (cTime - pTime)
             pTime = cTime
+            #cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def ActivateSquat(self):
         cap = cv2.VideoCapture("Dataset/squat_main.mp4")
@@ -299,20 +476,21 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
+                # creating bar
+                # cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
+                # cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
+
                 cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, color, 4)
+                # cv2.putText(img, f'{int(per1)}%', (1130, 75), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (280, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cTime = time.time()
             fps = 1 / (cTime - pTime)
             pTime = cTime
+            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
         cap = cv2.VideoCapture("Dataset/pushUps2.mp4")
@@ -332,7 +510,7 @@ class MainWindow(QMainWindow):
             angle = detector.findAngle(img, 11, 13, 15, True)
 
             perc = np.interp(angle, (204, 305), (0, 100))
-            print(angle, perc)
+            # print(angle, perc)
 
             if perc == 100:
                 if dir == 0:
@@ -350,13 +528,9 @@ class MainWindow(QMainWindow):
             pTime = cTime
 
             # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-            cv2.imshow("Exercise", img)
-            cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
+            cv2.imshow("Image", img)
 
-        cap.release()
-        cv2.destroyAllWindows()
+            cv2.waitKey(1)
 
     def ActivateJumpingJacks(self):
         cap = cv2.VideoCapture(0)
@@ -396,17 +570,13 @@ class MainWindow(QMainWindow):
             cv2.putText(img, str(int(angle_ll)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
             cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
 
-            cv2.imshow("Exercise", img)
-            cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
+            cv2.imshow("Image", img)
 
-        cap.release()
-        cv2.destroyAllWindows()
+            cv2.waitKey(1)
 
     def ActivateButtBridge(self):
-        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -414,8 +584,8 @@ class MainWindow(QMainWindow):
         while True:
             success, img = cap.read()
             img = cv2.resize(img, (1000, 800))
-            img = detector.findPose(img, True)
-            lmList = detector.findPosition(img, True)
+            img = detector.findPose(img, False)
+            lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
@@ -435,13 +605,8 @@ class MainWindow(QMainWindow):
             #cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
             cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
         cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
@@ -483,13 +648,8 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def ActivateLunges(self):
         cap = cv2.VideoCapture("Dataset/lunge1.mp4")
@@ -525,7 +685,7 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
-                print(count)
+                ##print(count)
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
@@ -535,13 +695,8 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def ActivatePlank(self):
         #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
@@ -582,13 +737,8 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
     def Activatecrunches(self):
         #cap = cv2.VideoCapture("")
@@ -630,16 +780,12 @@ class MainWindow(QMainWindow):
             pTime = cTime
             # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Exercise", img)
+            cv2.imshow("Image", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Exercise", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    App = QApplication(sys.argv)
     mainWin = MainWindow()
     mainWin.show()
     sys.exit(app.exec_())
