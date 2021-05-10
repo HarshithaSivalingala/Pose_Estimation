@@ -10,13 +10,14 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from datetime import datetime
+from PyQt5.QtWidgets import QMessageBox
+import Popup as po
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.setMinimumSize(QSize(500, 500))
+        self.setMinimumSize(QSize(1250, 1000))
         self.setWindowTitle("Menu")
         self.Dumbbell()
         self.Squat()
@@ -26,17 +27,13 @@ class MainWindow(QMainWindow):
         self.Hydrant()
         self.Plank()
         self.Crunch()
-
-
         self.show()
-
-
 
 
     def Dumbbell(self):
         # Setting up a combo list
         self.comboBox1 = QComboBox(self)
-        self.comboBox1.setGeometry(50, 50, 185, 32)
+        self.comboBox1.setGeometry(400, 200, 350, 50)
         list = ["Demo", "Camera"]
         self.comboBox1.addItems(list)
         self.comboBox1.setEditable(True)
@@ -47,10 +44,10 @@ class MainWindow(QMainWindow):
 
         # Creating a main button
         dumbbell = QPushButton('Dumbbell', self)
-        dumbbell.setFont(QFont('Castellar', 15))
+        dumbbell.setFont(QFont('Castellar', 20))
         dumbbell.setStyleSheet("QPushButton"
                                "{"
-                               "background-color : yellow;"
+                               "background-color : lightgreen;"
                                "}"
                                "QPushButton::hover"
                                "{"
@@ -58,8 +55,8 @@ class MainWindow(QMainWindow):
                                "}")
         # dumbbell.setStyleSheet("background-color : yellow")
         dumbbell.pressed.connect(self.comboBox1.showPopup)
-        dumbbell.resize(185, 32)
-        dumbbell.move(50, 50)
+        dumbbell.resize(350, 50)
+        dumbbell.move(400, 200)
 
 
         self.comboBox1.activated[str].connect(self.OnActivateDumbbell)
@@ -82,7 +79,7 @@ class MainWindow(QMainWindow):
     def Squat(self):
         # Setting up a combo list
         self.combo_box2 = QComboBox(self)
-        self.combo_box2.setGeometry(50, 100, 150, 32)
+        self.combo_box2.setGeometry(400, 280, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box2.addItems(list)
         self.combo_box2.setEditable(True)
@@ -90,19 +87,19 @@ class MainWindow(QMainWindow):
         self.combo_box2.setFont(font)
 
         squat = QPushButton('Squats', self)
-        squat.setFont(QFont('Castellar', 15))
+        squat.setFont(QFont('Castellar', 20))
         squat.setStyleSheet("QPushButton"
                             "{"
-                            "background-color : pink;"
+                            "background-color : lightgreen;"
                             "}"
                             "QPushButton::hover"
                             "{"
-                            "background-color : lightpink;"
+                            "background-color : lightyellow;"
                             "}")
         # squat.setStyleSheet("background-color : pink")
         squat.clicked.connect(self.combo_box2.showPopup)
-        squat.resize(150, 32)
-        squat.move(50, 100)
+        squat.resize(350, 50)
+        squat.move(400, 280)
 
         self.combo_box2.activated[str].connect(self.OnActivateSquat)
 
@@ -123,7 +120,7 @@ class MainWindow(QMainWindow):
     def PushUp(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 150, 170, 32)
+        self.combo_box.setGeometry(400, 360, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -131,10 +128,10 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         push = QPushButton('Push Ups', self)
-        push.setFont(QFont('Castellar', 15))
+        push.setFont(QFont('Castellar', 20))
         push.setStyleSheet("QPushButton"
                            "{"
-                           "background-color : yellow;"
+                           "background-color : lightgreen;"
                            "}"
                            "QPushButton::hover"
                            "{"
@@ -142,8 +139,8 @@ class MainWindow(QMainWindow):
                            "}")
         # push.setStyleSheet("background-color : yellow")
         push.clicked.connect(self.combo_box.showPopup)
-        push.resize(170, 32)
-        push.move(50, 150)
+        push.resize(350, 50)
+        push.move(400, 360)
 
         self.combo_box.activated[str].connect(self.OnActivatePushUp)
 
@@ -164,7 +161,7 @@ class MainWindow(QMainWindow):
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 200, 225, 32)
+        self.combo_box.setGeometry(400, 440, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -172,19 +169,19 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         buttBridge = QPushButton('Butt Bridge', self)
-        buttBridge.setFont(QFont('Castellar', 15))
+        buttBridge.setFont(QFont('Castellar', 20))
         buttBridge.setStyleSheet("QPushButton"
                                  "{"
-                                 "background-color : pink;"
+                                 "background-color : lightgreen;"
                                  "}"
                                  "QPushButton::hover"
                                  "{"
-                                 "background-color : lightpink;"
+                                 "background-color : lightyellow;"
                                  "}")
         # buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.combo_box.showPopup)
-        buttBridge.resize(225, 32)
-        buttBridge.move(50, 200)
+        buttBridge.resize(350, 50)
+        buttBridge.move(400, 440)
 
         self.combo_box.activated[str].connect(self.OnActivateButtBridge)
 
@@ -205,7 +202,7 @@ class MainWindow(QMainWindow):
     def Lunges(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 250, 150, 32)
+        self.combo_box.setGeometry(400, 520, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -214,10 +211,10 @@ class MainWindow(QMainWindow):
 
         # creating a button
         lunges = QPushButton('Lunges', self)
-        lunges.setFont(QFont('Castellar', 15))
+        lunges.setFont(QFont('Castellar', 20))
         lunges.setStyleSheet("QPushButton"
                              "{"
-                             "background-color : yellow;"
+                             "background-color : lightgreen;"
                              "}"
                              "QPushButton::hover"
                              "{"
@@ -225,8 +222,8 @@ class MainWindow(QMainWindow):
                              "}")
         # lunges.setStyleSheet("background-color : yellow")
         lunges.clicked.connect(self.combo_box.showPopup)
-        lunges.resize(150, 32)
-        lunges.move(50, 250)
+        lunges.resize(350, 50)
+        lunges.move(400, 520)
 
         self.combo_box.activated[str].connect(self.OnActivateLunges)
 
@@ -247,7 +244,7 @@ class MainWindow(QMainWindow):
     def Hydrant(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 300, 250, 32)
+        self.combo_box.setGeometry(400, 600, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -256,19 +253,19 @@ class MainWindow(QMainWindow):
 
         # Creating a button
         hydrant = QPushButton('Fire Hydrant', self)
-        hydrant.setFont(QFont('Castellar', 15))
+        hydrant.setFont(QFont('Castellar', 20))
         hydrant.setStyleSheet("QPushButton"
                               "{"
-                              "background-color : pink;"
+                              "background-color : lightgreen;"
                               "}"
                               "QPushButton::hover"
                               "{"
-                              "background-color : lightpink;"
+                              "background-color : lightyellow;"
                               "}")
         # hydrant.setStyleSheet("background-color : pink")
         hydrant.clicked.connect(self.combo_box.showPopup)
-        hydrant.resize(250, 32)
-        hydrant.move(50, 300)
+        hydrant.resize(350, 50)
+        hydrant.move(400, 600)
 
         self.combo_box.activated[str].connect(self.OnActivateHydrant)
 
@@ -289,7 +286,7 @@ class MainWindow(QMainWindow):
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 350, 280, 32)
+        self.combo_box.setGeometry(400, 680, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -298,10 +295,10 @@ class MainWindow(QMainWindow):
 
         # creating a button
         plank = QPushButton('Up/Down Plank', self)
-        plank.setFont(QFont('Castellar', 15))
+        plank.setFont(QFont('Castellar', 20))
         plank.setStyleSheet("QPushButton"
                             "{"
-                            "background-color : yellow;"
+                            "background-color : lightgreen;"
                             "}"
                             "QPushButton::hover"
                             "{"
@@ -309,8 +306,8 @@ class MainWindow(QMainWindow):
                             "}")
         # plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.combo_box.showPopup)
-        plank.resize(280, 32)
-        plank.move(50, 350)
+        plank.resize(350, 50)
+        plank.move(400, 680)
 
         self.combo_box.activated[str].connect(self.OnActivatePlank)
 
@@ -331,7 +328,7 @@ class MainWindow(QMainWindow):
     def Crunch(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(50, 400, 190, 32)
+        self.combo_box.setGeometry(400, 760, 350, 50)
         list = ["Demo", "Camera"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -340,10 +337,10 @@ class MainWindow(QMainWindow):
 
         # creating a button
         crunch = QPushButton('crunches', self)
-        crunch.setFont(QFont('Castellar', 15))
+        crunch.setFont(QFont('Castellar', 20))
         crunch.setStyleSheet("QPushButton"
                              "{"
-                             "background-color : yellow;"
+                             "background-color : lightgreen;"
                              "}"
                              "QPushButton::hover"
                              "{"
@@ -351,8 +348,8 @@ class MainWindow(QMainWindow):
                              "}")
         # plank.setStyleSheet("background-color : yellow")
         crunch.clicked.connect(self.combo_box.showPopup)
-        crunch.resize(190, 32)
-        crunch.move(50, 400)
+        crunch.resize(350, 50)
+        crunch.move(400, 760)
 
         self.combo_box.activated[str].connect(self.OnActivateCrunch)
 
@@ -370,12 +367,12 @@ class MainWindow(QMainWindow):
         elif text == "Camera":
             self.Activatecrunches()
 
-
-    # Pose estimating workouts
+        # Pose estimating workouts
 
     def ActivateDumbbell(self):
-        #cap = cv2.VideoCapture("Dataset/curls.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/curls.mp4")
+        #cap = cv2.VideoCapture(0)
+
 
         detector = pm.poseDetector()
         count = 0
@@ -411,12 +408,13 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
+                print(count)
 
-                target = 2
+                target = 5
 
-                #if count == target:
-                   # cv2.putText(img, "You have reached the target!", (40, 300), cv2.FONT_HERSHEY_PLAIN, 3,  (255, 0, 0), 5)
-                   # cv2.waitKey(1000)
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
 
 
                 # Drawing the box --> Bar
@@ -782,6 +780,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    App = QApplication(sys.argv)
     mainWin = MainWindow()
     mainWin.show()
     sys.exit(app.exec_())
