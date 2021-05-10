@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
-
+#from menu import MainWindow
 
 class Window(QMainWindow):
     def __init__(self):
@@ -15,15 +15,17 @@ class Window(QMainWindow):
         self.show()
 
     def show_popup(self):
+        print("POP")
         msg = QMessageBox()
         msg.setWindowTitle("Message")
-        msg.setText("Congratulations Again! You have reached the target")
+        msg.setText("Congratulations! You have reached the target")
         msg.setIcon(QMessageBox.Information)
-        msg.setStandardButtons(QMessageBox.Ok | QMessageBox. Retry | QMessageBox.Cancel)
+        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Do_it_again | QMessageBox.Cancel)
         msg.buttonClicked.connect(self.popup_button)
         returnValue = msg.exec_()
-        if returnValue == QMessageBox.Ok:
-            print("OK clicked")
+        if returnValue == QMessageBox.Cancel:
+         #   MainWindow.ActivateDumbbell()
+            print("clicked")
 
     def popup_button(self, i):
         print(i.text())
