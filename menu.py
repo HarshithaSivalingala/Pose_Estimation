@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
 
         self.setMinimumSize(QSize(1250, 1000))
+        #self.setStyleSheet("background-color: grey;")
         self.setWindowTitle("Menu")
         self.Dumbbell()
         self.Squat()
@@ -465,8 +466,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSquat(self):
-        cap = cv2.VideoCapture("Dataset/squat_main.mp4")
-        # cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/squat_main.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -515,7 +516,7 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
-        cap = cv2.VideoCapture("Dataset/pushUps2.mp4")
+        cap = cv2.VideoCapture(0)
 
         pTime = 0
         detector = pm.poseDetector()
@@ -594,7 +595,7 @@ class MainWindow(QMainWindow):
 
     def ActivateFireHydrant(self):
         cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        # cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0

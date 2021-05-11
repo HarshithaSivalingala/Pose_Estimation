@@ -23,7 +23,7 @@ class Window(QMainWindow):
         palette.setBrush(QPalette.Window, QBrush(img))
         self.setPalette(palette)
         #self.setStyleSheet("QWidget {background-image: url(Dataset/homeworkout.jpeg)}")
-        self.setMinimumSize(QSize(1250, 1000))
+        self.setMinimumSize(QSize(1250, 900))
 
         # calling method
         self.UiComponents()
@@ -31,7 +31,7 @@ class Window(QMainWindow):
         self.show()
     # method for widgets
     def UiComponents(self):
-        start = QPushButton("Start", self)
+        start = QPushButton("Let's Begin", self)
         start.resize(200, 60)
         start.move(650, 600)
         start.setFont(QFont('Times', 20))
