@@ -294,7 +294,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateHydrant(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+            cap = cv2.VideoCapture("Dataset/fh.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -341,7 +341,7 @@ class MainWindow(QMainWindow):
 
     def OnActivatePlank(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+            cap = cv2.VideoCapture("Dataset/ud.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
