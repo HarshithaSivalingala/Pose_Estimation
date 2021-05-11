@@ -58,7 +58,6 @@ class MainWindow(QMainWindow):
         dumbbell.resize(350, 50)
         dumbbell.move(400, 200)
 
-
         self.comboBox1.activated[str].connect(self.OnActivateDumbbell)
 
     def OnActivateDumbbell(self, text):
@@ -68,13 +67,17 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Dumbbell lifting", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Dumbbell lifting", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivateDumbbell()
-
 
     def Squat(self):
         # Setting up a combo list
@@ -110,9 +113,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Squat", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Squat", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivateSquat()
@@ -151,9 +159,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Push Ups", img)
+                    if cv2.waitKey(20) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Push Ups", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivatePushUps()
@@ -192,9 +205,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Butt Bridge", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Butt Bridge", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivateButtBridge()
@@ -234,9 +252,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Lunges", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Lunges", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivateLunges()
@@ -276,9 +299,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Fire Hydrant", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Fire Hydrant", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivateFireHydrant()
@@ -318,9 +346,14 @@ class MainWindow(QMainWindow):
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Up/Down Plank", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Up/Down Plank", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.ActivatePlank()
@@ -336,7 +369,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # creating a button
-        crunch = QPushButton('crunches', self)
+        crunch = QPushButton('Crunches', self)
         crunch.setFont(QFont('Castellar', 20))
         crunch.setStyleSheet("QPushButton"
                              "{"
@@ -355,24 +388,26 @@ class MainWindow(QMainWindow):
 
     def OnActivateCrunch(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/skipping1.mp4")
+            cap = cv2.VideoCapture("Dataset/curls.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Image", img)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
+                    cv2.imshow("Crunches", img)
+                    if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
+                if cv2.getWindowProperty("Crunches", cv2.WND_PROP_AUTOSIZE) < 1:
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
 
         elif text == "Camera":
             self.Activatecrunches()
 
-        # Pose estimating workouts
-
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
         #cap = cv2.VideoCapture(0)
-
 
         detector = pm.poseDetector()
         count = 0
@@ -408,30 +443,26 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
-                print(count)
 
-                target = 5
+                target = 2
 
                 if count == target:
                     win = po.Window()
                     cv2.waitKey(30000)
 
 
-                # Drawing the box --> Bar
-                cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
-                cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
-                cv2.putText(img, f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
-
                 # Curls Count
                 cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            #cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Dumbbell", img)
             cv2.waitKey(1)
+
+            if cv2.getWindowProperty("Dumbbell", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateSquat(self):
         cap = cv2.VideoCapture("Dataset/squat_main.mp4")
@@ -471,21 +502,17 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                # creating bar
-                # cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
-                # cv2.rectangle(img, (1100, int(bar)), (1175, 650), color, cv2.FILLED)
 
                 cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, color, 4)
-                # cv2.putText(img, f'{int(per1)}%', (1130, 75), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (280, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
-
-            cv2.imshow("Image", img)
+            cv2.imshow("Squats", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Squats", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
         cap = cv2.VideoCapture("Dataset/pushUps2.mp4")
@@ -500,108 +527,70 @@ class MainWindow(QMainWindow):
             img = detector.findPose(img, False)
 
             img = cv2.resize(img, (1400, 800))
-
             lmList = detector.findPosition(img, False)
-            angle = detector.findAngle(img, 11, 13, 15, True)
 
-            perc = np.interp(angle, (204, 305), (0, 100))
-            # print(angle, perc)
+            if len(lmList) != 0:
+                angle = detector.findAngle(img, 11, 13, 15, True)
 
-            if perc == 100:
-                if dir == 0:
-                    count += 0.5
-                    dir = 1
-            if perc == 0:
-                if dir == 1:
-                    count += 0.5
-                    dir = 0
+                perc = np.interp(angle, (208, 290), (0, 100))
 
-            cv2.putText(img, str(int(count)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+                if perc == 100:
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+                if perc == 0:
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            # cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-            cv2.imshow("Image", img)
-
+            cv2.imshow("Push Ups", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Push Ups", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
 
-    def ActivateJumpingJacks(self):
-        cap = cv2.VideoCapture(0)
-        detector = pm.poseDetector()
-
-        dir = 0
-        count = 0
-        while True:
-            success, img = cap.read()
-            img = detector.findPose(img, False)
-
-            img = cv2.resize(img, (1400, 800))
-
-            lmList = detector.findPosition(img, False)
-            #right hand
-            angle_rh = detector.findAngle(img, 14, 12, 24, True)
-            # left hand
-            angle_lh = detector.findAngle(img, 13, 11, 23, True)
-            # right leg
-            angle_rl = detector.findAngle(img, 23, 24, 26, True)
-            angle_ll = detector.findAngle(img, 24, 23, 25, True)
-
-            #perc_hand = np.interp(angle_ll, (180, 330), (0, 100))
-            perc_leg = np.interp(angle_ll, (180, 330), (0, 100))
-
-            print(angle_ll, perc)
-
-            if perc == 100:
-                if dir == 0:
-                    count += 0.5
-                    dir = 1
-            if perc == 0:
-                if dir == 1:
-                    count += 0.5
-                    dir = 0
-
-            cv2.putText(img, str(int(angle_ll)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-            cv2.putText(img, str(int(count)), (100, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-
-            cv2.imshow("Image", img)
-
-            cv2.waitKey(1)
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
         dir = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1000, 800))
+            img = cv2.resize(img, (1300, 720))
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(angle, (128, 180), (0, 100))
-                print(angle, per)
+                per = np.interp(angle, (190, 220), (0, 100))
 
-            color = (0, 0, 255)
-            if round(per) in range(98, 100):
-                if dir == 0:
-                    count += 0.5
-                    dir = 1
-            if round(per) in range(0, 10):
-                if dir == 1:
-                    count += 0.5
-                    dir = 0
+                color = (0, 0, 255)
+                if per == 100:
+                    if dir == 0:
+                        count += 0.5
+                        dir = 1
+                if per == 0:
+                    if dir == 1:
+                        count += 0.5
+                        dir = 0
 
-            #cv2.putText(img, str(int(angle)), (280, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 6)
-            cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cv2.imshow("Image", img)
+            cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Butt Bridge", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
         cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
@@ -638,13 +627,13 @@ class MainWindow(QMainWindow):
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
-
-            cv2.imshow("Image", img)
+            cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Fire Hydrant", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivateLunges(self):
         cap = cv2.VideoCapture("Dataset/lunge1.mp4")
@@ -662,11 +651,9 @@ class MainWindow(QMainWindow):
                 # Left Leg
                 leg2 = detector.findAngle(img, 23, 25, 27)
                 per2 = np.interp(leg2, (190, 280), (0, 100))
-                #print(leg2, per2)
                 #Right leg
                 leg1 = detector.findAngle(img, 24, 26, 28)
                 per1 = np.interp(leg1, (190, 290), (0, 100))
-                #print(leg1, per1, leg2, per2)
 
                 # Checking count
                 color = (255, 0, 255)
@@ -680,22 +667,21 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
-                ##print(count)
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
-
-            cv2.imshow("Image", img)
+            cv2.imshow("Lunges", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Lunges", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def ActivatePlank(self):
-        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -722,18 +708,17 @@ class MainWindow(QMainWindow):
                     if dir == 1:
                         count += 0.5
                         dir = 0
-                #print(count)
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
-
-            cv2.imshow("Image", img)
+            cv2.imshow("Up/Down Plank", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Up/Down Plank", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
     def Activatecrunches(self):
         #cap = cv2.VideoCapture("")
@@ -770,13 +755,13 @@ class MainWindow(QMainWindow):
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
-            # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
-
-            cv2.imshow("Image", img)
+            cv2.imshow("Crunches", img)
             cv2.waitKey(1)
+            if cv2.getWindowProperty("Crunches", cv2.WND_PROP_AUTOSIZE) < 1:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

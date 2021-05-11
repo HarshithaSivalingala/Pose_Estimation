@@ -3,8 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 from PyQt5.QtWidgets import QLabel
-from menu import MainWindow
-
+import cv2
 
 class Window(QMainWindow):
     def __init__(self):
@@ -29,9 +28,8 @@ class Window(QMainWindow):
         self.showbutton()
         self.show()
 
-
     def showbutton(self):
-        pushButton1 = QPushButton(" Try Again", self)
+        pushButton1 = QPushButton(" Do It Again", self)
         #pushButton.pressed.connect(self.show_popup)
         pushButton1.resize(120, 40)
         pushButton1.move(45, 100)
@@ -44,7 +42,6 @@ class Window(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
-        #pushButton1.pressed.connect(MainWindow.ActivateDumbbell)
 
         pushButton2 = QPushButton("Finish", self)
         # pushButton.pressed.connect(self.show_popup)
@@ -60,7 +57,6 @@ class Window(QMainWindow):
                                   "background-color : lightyellow;"
                                   "}")
         pushButton2.pressed.connect(self.close)
-
 
 
 # create pyqt5 app
