@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateDumbbell(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/curls.mp4")
+            cap = cv2.VideoCapture("Dataset/dumbell.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
