@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
         # Setting up a combo list
         self.comboBox1 = QComboBox(self)
         self.comboBox1.setGeometry(400, 200, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.comboBox1.addItems(list)
         self.comboBox1.setEditable(True)
         font = QFont('Arial', 11)
@@ -77,14 +77,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateDumbbell()
 
     def Squat(self):
         # Setting up a combo list
         self.combo_box2 = QComboBox(self)
         self.combo_box2.setGeometry(400, 280, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box2.addItems(list)
         self.combo_box2.setEditable(True)
         font = QFont('Arial', 11)
@@ -123,14 +123,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateSquat()
 
     def PushUp(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 360, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -169,14 +169,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivatePushUps()
 
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 440, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -215,14 +215,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateButtBridge()
 
     def Lunges(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 520, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -262,14 +262,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateLunges()
 
     def Hydrant(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 600, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -309,14 +309,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateFireHydrant()
 
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 680, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -356,14 +356,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivatePlank()
 
     def Sit_ups(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 760, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -372,7 +372,7 @@ class MainWindow(QMainWindow):
         # creating a button
 
 
-        Sit_ups = QPushButton('Sit_ups', self)
+        Sit_ups = QPushButton('Sit Ups', self)
         Sit_ups.setFont(QFont('Castellar', 20))
         Sit_ups.setStyleSheet("QPushButton"
                              "{"
@@ -405,7 +405,7 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateSit_ups()
 
     def ActivateDumbbell(self):
