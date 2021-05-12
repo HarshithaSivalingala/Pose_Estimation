@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         self.Lunges()
         self.Hydrant()
         self.Plank()
-        self.Crunch()
+        self.Sit_ups()
         self.show()
 
 
@@ -359,7 +359,7 @@ class MainWindow(QMainWindow):
         elif text == "Camera":
             self.ActivatePlank()
 
-    def Crunch(self):
+    def Sit_ups(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 760, 350, 50)
@@ -370,9 +370,11 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # creating a button
-        crunch = QPushButton('Crunches', self)
-        crunch.setFont(QFont('Castellar', 20))
-        crunch.setStyleSheet("QPushButton"
+
+
+        Sit_ups = QPushButton('Sit_ups', self)
+        Sit_ups.setFont(QFont('Castellar', 20))
+        Sit_ups.setStyleSheet("QPushButton"
                              "{"
                              "background-color : lightgreen;"
                              "}"
@@ -380,31 +382,31 @@ class MainWindow(QMainWindow):
                              "{"
                              "background-color : lightyellow;"
                              "}")
-        # plank.setStyleSheet("background-color : yellow")
-        crunch.clicked.connect(self.combo_box.showPopup)
-        crunch.resize(350, 50)
-        crunch.move(400, 760)
+        # Sit_ups.setStyleSheet("background-color : yellow")
+        Sit_ups.clicked.connect(self.combo_box.showPopup)
+        Sit_ups.resize(350, 50)
+        Sit_ups.move(400, 760)
 
-        self.combo_box.activated[str].connect(self.OnActivateCrunch)
+        self.combo_box.activated[str].connect(self.OnActivateSit_ups)
 
-    def OnActivateCrunch(self, text):
+    def OnActivateSit_ups(self, text):
         if text == "Demo":
             cap = cv2.VideoCapture("Dataset/crunches.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
                 if success == True:
-                    cv2.imshow("Crunches", img)
+                    cv2.imshow("Sit_ups", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
-                if cv2.getWindowProperty("Crunches", cv2.WND_PROP_AUTOSIZE) < 1:
+                if cv2.getWindowProperty("Sit_ups", cv2.WND_PROP_AUTOSIZE) < 1:
                     break
 
             cap.release()
             cv2.destroyAllWindows()
 
         elif text == "Camera":
-            self.Activatecrunches()
+            self.ActivateSit_ups()
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
