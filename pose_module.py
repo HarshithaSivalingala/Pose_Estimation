@@ -70,7 +70,6 @@ def main():
         success, img = cap.read()
         img = detector.findPose(img)
         lmList = detector.findPosition(img)
-        #print(lmList)
 
         cTime  = time.time()
         fps = 1 / (cTime - pTime)
