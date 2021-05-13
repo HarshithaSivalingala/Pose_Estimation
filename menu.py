@@ -27,9 +27,8 @@ class MainWindow(QMainWindow):
         self.Lunges()
         self.Hydrant()
         self.Plank()
-        self.Sit_ups()
+        self.SitUps()
         self.show()
-
 
     def Dumbbell(self):
         # Setting up a combo list
@@ -41,9 +40,6 @@ class MainWindow(QMainWindow):
         font = QFont('Arial', 11)
         self.comboBox1.setFont(font)
 
-       #role1 = self.comboBox1.setItemData(0)
-
-        # Creating a main button
         dumbbell = QPushButton('Dumbbell', self)
         dumbbell.setFont(QFont('Castellar', 20))
         dumbbell.setStyleSheet("QPushButton"
@@ -67,7 +63,7 @@ class MainWindow(QMainWindow):
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
-                if success == True:
+                if success:
                     cv2.imshow("Dumbbell lifting", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
@@ -359,7 +355,7 @@ class MainWindow(QMainWindow):
         elif text == "Exercise":
             self.ActivatePlank()
 
-    def Sit_ups(self):
+    def SitUps(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 760, 350, 50)
@@ -368,9 +364,6 @@ class MainWindow(QMainWindow):
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
         self.combo_box.setFont(font)
-
-        # creating a button
-
 
         Sit_ups = QPushButton('Sit Ups', self)
         Sit_ups.setFont(QFont('Castellar', 20))
@@ -387,9 +380,9 @@ class MainWindow(QMainWindow):
         Sit_ups.resize(350, 50)
         Sit_ups.move(400, 760)
 
-        self.combo_box.activated[str].connect(self.OnActivateSit_ups)
+        self.combo_box.activated[str].connect(self.OnActivateSitUps)
 
-    def OnActivateSit_ups(self, text):
+    def OnActivateSitUps(self, text):
         if text == "Demo":
             cap = cv2.VideoCapture("Dataset/crunches.mp4")
             while True:
@@ -399,14 +392,14 @@ class MainWindow(QMainWindow):
                     cv2.imshow("Sit_ups", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
-                if cv2.getWindowProperty("Sit_ups", cv2.WND_PROP_AUTOSIZE) < 1:
+                if cv2.getWindowProperty("Sit_ups", cv2.WND_PROP_VISIBLE) < 1:
                     break
 
             cap.release()
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
-            self.ActivateSit_ups()
+            self.ActivateSitUps()
 
     def ActivateDumbbell(self):
         cap = cv2.VideoCapture("Dataset/curls.mp4")
@@ -415,7 +408,6 @@ class MainWindow(QMainWindow):
         detector = pm.poseDetector()
         count = 0
         dir = 0
-        pTime = 0
 
         while True:
             success, img = cap.read()
@@ -424,37 +416,31 @@ class MainWindow(QMainWindow):
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
-
             if len(lmList) != 0:
                 # Right Arm
-                angle = detector.findAngle(img, 12, 14, 16)
+                #angle = detector.findAngle(img, 12, 14, 16)
+
                 # Left Arm
                 angle = detector.findAngle(img, 11, 13, 15)
                 per = np.interp(angle, (210, 310), (0, 100))
-                bar = np.interp(angle, (220, 310), (650, 100))  # (min, max)
-                #print(angle, per)
 
                 # Check for the dumbbell curls
-                color = (255, 0, 255)
                 if per == 100:
-                    color = (0, 0, 255)
                     if dir == 0:
                         count += 0.5
                         dir = 1
+
                 if per == 0:
-                    color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
-                target = 2
+                target = 4
 
                 if count == target:
                     win = po.Window()
                     cv2.waitKey(30000)
 
-
-                # Curls Count
                 cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
@@ -723,7 +709,7 @@ class MainWindow(QMainWindow):
         cap.release()
         cv2.destroyAllWindows()
 
-    def Activatecrunches(self):
+    def ActivateSitUps(self):
         #cap = cv2.VideoCapture("")
         cap = cv2.VideoCapture(0)
 
