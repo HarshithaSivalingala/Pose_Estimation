@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
         self.comboBox1.setFont(font)
 
         dumbbell = QPushButton('Dumbbell', self)
-        dumbbell.setFont(QFont('Castellar', 20))
+        dumbbell.setFont(QFont('Castellar', 17))
         dumbbell.setStyleSheet("QPushButton"
                                "{"
                                "background-color : lightgreen;"
@@ -87,7 +87,7 @@ class MainWindow(QMainWindow):
         self.combo_box2.setFont(font)
 
         squat = QPushButton('Squats', self)
-        squat.setFont(QFont('Castellar', 20))
+        squat.setFont(QFont('Castellar', 17))
         squat.setStyleSheet("QPushButton"
                             "{"
                             "background-color : lightgreen;"
@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         push = QPushButton('Push Ups', self)
-        push.setFont(QFont('Castellar', 20))
+        push.setFont(QFont('Castellar', 17))
         push.setStyleSheet("QPushButton"
                            "{"
                            "background-color : lightgreen;"
@@ -179,7 +179,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         buttBridge = QPushButton('Butt Bridge', self)
-        buttBridge.setFont(QFont('Castellar', 20))
+        buttBridge.setFont(QFont('Castellar', 17))
         buttBridge.setStyleSheet("QPushButton"
                                  "{"
                                  "background-color : lightgreen;"
@@ -226,7 +226,7 @@ class MainWindow(QMainWindow):
 
         # creating a button
         lunges = QPushButton('Lunges', self)
-        lunges.setFont(QFont('Castellar', 20))
+        lunges.setFont(QFont('Castellar', 17))
         lunges.setStyleSheet("QPushButton"
                              "{"
                              "background-color : lightgreen;"
@@ -273,7 +273,7 @@ class MainWindow(QMainWindow):
 
         # Creating a button
         hydrant = QPushButton('Fire Hydrant', self)
-        hydrant.setFont(QFont('Castellar', 20))
+        hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
                               "background-color : lightgreen;"
@@ -320,7 +320,7 @@ class MainWindow(QMainWindow):
 
         # creating a button
         plank = QPushButton('Up/Down Plank', self)
-        plank.setFont(QFont('Castellar', 20))
+        plank.setFont(QFont('Castellar', 17))
         plank.setStyleSheet("QPushButton"
                             "{"
                             "background-color : lightgreen;"
@@ -366,7 +366,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         Sit_ups = QPushButton('Sit Ups', self)
-        Sit_ups.setFont(QFont('Castellar', 20))
+        Sit_ups.setFont(QFont('Castellar', 17))
         Sit_ups.setStyleSheet("QPushButton"
                              "{"
                              "background-color : lightgreen;"
@@ -384,7 +384,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/crunches.mp4")
+            cap = cv2.VideoCapture("Dataset/sit_ups.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
