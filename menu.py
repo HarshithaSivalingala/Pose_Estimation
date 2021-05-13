@@ -402,8 +402,8 @@ class MainWindow(QMainWindow):
             self.ActivateSitUps()
 
     def ActivateDumbbell(self):
-        cap = cv2.VideoCapture("Dataset/curls.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/curls.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -544,8 +544,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -558,7 +558,7 @@ class MainWindow(QMainWindow):
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(angle, (190, 220), (0, 100))
+                per = np.interp(angle, (190, 222), (0, 100))
 
                 color = (0, 0, 255)
                 if per == 100:
@@ -572,6 +572,7 @@ class MainWindow(QMainWindow):
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                cv2.putText(img, str(int(angle)), (170, 90), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
@@ -582,8 +583,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
-        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -625,8 +626,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateLunges(self):
-        cap = cv2.VideoCapture("Dataset/lunge1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+        cap = cv2.VideoCapture(0)
         detector = pm.poseDetector()
         count = 0
         dir = 0
@@ -669,8 +670,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePlank(self):
-        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -710,8 +711,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSitUps(self):
-        #cap = cv2.VideoCapture("")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
