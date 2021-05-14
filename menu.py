@@ -27,25 +27,21 @@ class MainWindow(QMainWindow):
         self.Lunges()
         self.Hydrant()
         self.Plank()
-        self.Sit_ups()
+        self.SitUps()
         self.show()
-
 
     def Dumbbell(self):
         # Setting up a combo list
         self.comboBox1 = QComboBox(self)
         self.comboBox1.setGeometry(400, 200, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.comboBox1.addItems(list)
         self.comboBox1.setEditable(True)
         font = QFont('Arial', 11)
         self.comboBox1.setFont(font)
 
-       #role1 = self.comboBox1.setItemData(0)
-
-        # Creating a main button
         dumbbell = QPushButton('Dumbbell', self)
-        dumbbell.setFont(QFont('Castellar', 20))
+        dumbbell.setFont(QFont('Castellar', 17))
         dumbbell.setStyleSheet("QPushButton"
                                "{"
                                "background-color : lightgreen;"
@@ -67,7 +63,7 @@ class MainWindow(QMainWindow):
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
-                if success == True:
+                if success:
                     cv2.imshow("Dumbbell lifting", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
@@ -77,21 +73,21 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateDumbbell()
 
     def Squat(self):
         # Setting up a combo list
         self.combo_box2 = QComboBox(self)
         self.combo_box2.setGeometry(400, 280, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box2.addItems(list)
         self.combo_box2.setEditable(True)
         font = QFont('Arial', 11)
         self.combo_box2.setFont(font)
 
         squat = QPushButton('Squats', self)
-        squat.setFont(QFont('Castellar', 20))
+        squat.setFont(QFont('Castellar', 17))
         squat.setStyleSheet("QPushButton"
                             "{"
                             "background-color : lightgreen;"
@@ -123,21 +119,21 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateSquat()
 
     def PushUp(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 360, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         push = QPushButton('Push Ups', self)
-        push.setFont(QFont('Castellar', 20))
+        push.setFont(QFont('Castellar', 17))
         push.setStyleSheet("QPushButton"
                            "{"
                            "background-color : lightgreen;"
@@ -169,21 +165,21 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivatePushUps()
 
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 440, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
         buttBridge = QPushButton('Butt Bridge', self)
-        buttBridge.setFont(QFont('Castellar', 20))
+        buttBridge.setFont(QFont('Castellar', 17))
         buttBridge.setStyleSheet("QPushButton"
                                  "{"
                                  "background-color : lightgreen;"
@@ -215,14 +211,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateButtBridge()
 
     def Lunges(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 520, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -230,7 +226,7 @@ class MainWindow(QMainWindow):
 
         # creating a button
         lunges = QPushButton('Lunges', self)
-        lunges.setFont(QFont('Castellar', 20))
+        lunges.setFont(QFont('Castellar', 17))
         lunges.setStyleSheet("QPushButton"
                              "{"
                              "background-color : lightgreen;"
@@ -262,14 +258,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateLunges()
 
     def Hydrant(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 600, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -277,7 +273,7 @@ class MainWindow(QMainWindow):
 
         # Creating a button
         hydrant = QPushButton('Fire Hydrant', self)
-        hydrant.setFont(QFont('Castellar', 20))
+        hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
                               "background-color : lightgreen;"
@@ -309,14 +305,14 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivateFireHydrant()
 
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 680, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
@@ -324,7 +320,7 @@ class MainWindow(QMainWindow):
 
         # creating a button
         plank = QPushButton('Up/Down Plank', self)
-        plank.setFont(QFont('Castellar', 20))
+        plank.setFont(QFont('Castellar', 17))
         plank.setStyleSheet("QPushButton"
                             "{"
                             "background-color : lightgreen;"
@@ -356,24 +352,21 @@ class MainWindow(QMainWindow):
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
+        elif text == "Exercise":
             self.ActivatePlank()
 
-    def Sit_ups(self):
+    def SitUps(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(400, 760, 350, 50)
-        list = ["Demo", "Camera"]
+        list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
         font = QFont('Arial', 11)
         self.combo_box.setFont(font)
 
-        # creating a button
-
-
-        Sit_ups = QPushButton('Sit_ups', self)
-        Sit_ups.setFont(QFont('Castellar', 20))
+        Sit_ups = QPushButton('Sit Ups', self)
+        Sit_ups.setFont(QFont('Castellar', 17))
         Sit_ups.setStyleSheet("QPushButton"
                              "{"
                              "background-color : lightgreen;"
@@ -387,11 +380,11 @@ class MainWindow(QMainWindow):
         Sit_ups.resize(350, 50)
         Sit_ups.move(400, 760)
 
-        self.combo_box.activated[str].connect(self.OnActivateSit_ups)
+        self.combo_box.activated[str].connect(self.OnActivateSitUps)
 
-    def OnActivateSit_ups(self, text):
+    def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/crunches.mp4")
+            cap = cv2.VideoCapture("Dataset/sit_ups.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -399,23 +392,22 @@ class MainWindow(QMainWindow):
                     cv2.imshow("Sit_ups", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break
-                if cv2.getWindowProperty("Sit_ups", cv2.WND_PROP_AUTOSIZE) < 1:
+                if cv2.getWindowProperty("Sit_ups", cv2.WND_PROP_VISIBLE) < 1:
                     break
 
             cap.release()
             cv2.destroyAllWindows()
 
-        elif text == "Camera":
-            self.ActivateSit_ups()
+        elif text == "Exercise":
+            self.ActivateSitUps()
 
     def ActivateDumbbell(self):
-        cap = cv2.VideoCapture("Dataset/curls.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/curls.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
         dir = 0
-        pTime = 0
 
         while True:
             success, img = cap.read()
@@ -424,37 +416,31 @@ class MainWindow(QMainWindow):
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
-
             if len(lmList) != 0:
                 # Right Arm
-                angle = detector.findAngle(img, 12, 14, 16)
+                #angle = detector.findAngle(img, 12, 14, 16)
+
                 # Left Arm
                 angle = detector.findAngle(img, 11, 13, 15)
                 per = np.interp(angle, (210, 310), (0, 100))
-                bar = np.interp(angle, (220, 310), (650, 100))  # (min, max)
-                #print(angle, per)
 
                 # Check for the dumbbell curls
-                color = (255, 0, 255)
                 if per == 100:
-                    color = (0, 0, 255)
                     if dir == 0:
                         count += 0.5
                         dir = 1
+
                 if per == 0:
-                    color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
-                target = 2
+                target = 4
 
                 if count == target:
                     win = po.Window()
                     cv2.waitKey(30000)
 
-
-                # Curls Count
                 cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
 
@@ -558,8 +544,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -572,7 +558,7 @@ class MainWindow(QMainWindow):
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(angle, (190, 220), (0, 100))
+                per = np.interp(angle, (190, 222), (0, 100))
 
                 color = (0, 0, 255)
                 if per == 100:
@@ -586,6 +572,7 @@ class MainWindow(QMainWindow):
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                cv2.putText(img, str(int(angle)), (170, 90), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
@@ -596,8 +583,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
-        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -639,8 +626,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateLunges(self):
-        cap = cv2.VideoCapture("Dataset/lunge1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+        cap = cv2.VideoCapture(0)
         detector = pm.poseDetector()
         count = 0
         dir = 0
@@ -683,8 +670,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePlank(self):
-        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -723,9 +710,9 @@ class MainWindow(QMainWindow):
         cap.release()
         cv2.destroyAllWindows()
 
-    def Activatecrunches(self):
-        #cap = cv2.VideoCapture("")
-        cap = cv2.VideoCapture(0)
+    def ActivateSitUps(self):
+        cap = cv2.VideoCapture("")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
