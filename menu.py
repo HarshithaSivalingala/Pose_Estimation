@@ -418,24 +418,25 @@ class MainWindow(QMainWindow):
 
             if len(lmList) != 0:
                 # Right Arm
-                #angle = detector.findAngle(img, 12, 14, 16)
+                angle_r = detector.findAngle(img, 12, 14, 16)
 
                 # Left Arm
-                angle = detector.findAngle(img, 11, 13, 15)
-                per = np.interp(angle, (210, 310), (0, 100))
+                angle_l = detector.findAngle(img, 11, 13, 15)
+                per_r = np.interp(angle_r, (210, 310), (0, 100))
+                per_l = np.interp(angle_l, (210, 310), (0, 100))
 
                 # Check for the dumbbell curls
-                if per == 100:
+                if per_r == 100 and per_l == 100:
                     if dir == 0:
                         count += 0.5
                         dir = 1
 
-                if per == 0:
+                if per_r == 0 and per_l == 0:
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
-                target = 4
+                target = 5
 
                 if count == target:
                     win = po.Window()
@@ -454,15 +455,18 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSquat(self):
-        #cap = cv2.VideoCapture("Dataset/squat_main.mp4")
+        #cap = cv2.VideoCapture("Dataset/squat_double.mp4")
         cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
         dir = 0
-        pTime = 0
+
         while True:
             success, img = cap.read()
+            if not success:
+                print("An error occurred")
+
             img = cv2.resize(img, (1300, 720))
 
             img = detector.findPose(img, False)
@@ -470,23 +474,19 @@ class MainWindow(QMainWindow):
 
             if len(lmList) != 0:
                 # Left Leg
-                angle1 = detector.findAngle(img, 23, 25, 27)
+                #angle_l = detector.findAngle(img, 23, 25, 27)
                 # Right Leg
-                # angle2 = detector.findAngle(img, 24, 26, 28)
-                per1 = np.interp(angle1, (165, 70), (0, 100))
-                # per2 = np.interp(angle2, (180, 60), (0, 80))
-                bar = np.interp(angle1, (165, 70), (650, 100))  # (min, max)
-                #print(angle1, per1)
+                angle_r = detector.findAngle(img, 24, 26, 28)
+                #per_l = np.interp(angle_l, (165, 70), (0, 100))
+                per_r = np.interp(angle_r, (165, 70), (0, 100))
 
                 # Checking count for squat
-                color = (255, 0, 255)
-                if per1 == 0:
-                    color = (0, 0, 255)
+
+                if per_r == 0:
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if per1 == 100:
-                    color = (0, 0, 255)
+                if per_r == 100:
                     if dir == 1:
                         count += 0.5
                         dir = 0
@@ -519,18 +519,26 @@ class MainWindow(QMainWindow):
             lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
-                angle = detector.findAngle(img, 11, 13, 15, True)
+                angle_l = detector.findAngle(img, 11, 13, 15, True)
+                angle_r = detector.findAngle(img, 12, 14, 16, True)
 
-                perc = np.interp(angle, (208, 290), (0, 100))
+                perc_l = np.interp(angle_l, (208, 290), (0, 100))
+                perc_r = np.interp(angle_r, (208, 290), (0, 100))
 
-                if perc == 100:
+                if perc_l == 100 and perc_r == 100:
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if perc == 0:
+                if perc_l == 0 and perc_r == 0:
                     if dir == 1:
                         count += 0.5
                         dir = 0
+
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
@@ -557,10 +565,9 @@ class MainWindow(QMainWindow):
             lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
-                angle = detector.findAngle(img, 11, 23, 25)
+                angle = detector.findAngle(img, 12, 24, 26)
                 per = np.interp(angle, (190, 222), (0, 100))
 
-                color = (0, 0, 255)
                 if per == 100:
                     if dir == 0:
                         count += 0.5
@@ -570,9 +577,15 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
-                cv2.putText(img, str(int(angle)), (170, 90), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                #cv2.putText(img, str(int(angle)), (170, 90), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
@@ -583,8 +596,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
-        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -595,6 +608,7 @@ class MainWindow(QMainWindow):
             img = cv2.resize(img, (1300, 720))
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
+
             if len(lmList) != 0:
                 leg1 = detector.findAngle(img, 23, 25, 27)
                 leg = detector.findAngle(img, 24, 26, 28)
@@ -602,20 +616,18 @@ class MainWindow(QMainWindow):
                 # print(leg, per)
 
                 # Checking count
-                color = (255, 0, 255)
-                if round(per) in range(95, 100):
-                    color = (0, 0, 255)
+                if round(per) == 90: #in range(95, 100):
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if round(per) in range(0, 10):
-                    color = (0, 0, 255)
+                if round(per) == 90: #in range(0, 10):
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
                 cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
                 cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                cv2.putText(img, str(int(leg)), (220, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)
@@ -626,8 +638,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateLunges(self):
-        #cap = cv2.VideoCapture("Dataset/lunge1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+        #cap = cv2.VideoCapture(0)
         detector = pm.poseDetector()
         count = 0
         dir = 0
