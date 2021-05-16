@@ -11,12 +11,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QMessageBox
+
 import Popup as po
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
-
         self.setMinimumSize(QSize(1250, 900))
         #self.setStyleSheet("background-color: grey;")
         self.setWindowTitle("Menu")
@@ -384,7 +385,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/sit_ups.mp4")
+            cap = cv2.VideoCapture("Dataset/sit_ups.mp4" )
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -711,8 +712,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSitUps(self):
-        cap = cv2.VideoCapture("")
-        #cap = cv2.VideoCapture(0)
+        #cap = cv2.VideoCapture("")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -724,10 +725,10 @@ class MainWindow(QMainWindow):
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
             if len(lmList) != 0:
-                side1 = detector.findAngle(img, 12, 24, 26 )
-                #side2 = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(side1, (60, 135), (0, 100))
-                # print(side, per)
+                rightside = detector.findAngle(img, 12, 24, 26 )
+                #leftside = detector.findAngle(img, 11, 23, 25)
+                per = np.interp(rightside, (60, 130), (0, 100))
+                #print(rightside, per)
 
                 # Checking count
                 color = (255, 0, 255)
@@ -742,12 +743,12 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (127, 255, 212), 4)
+                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 4)
 
-            cv2.imshow("Crunches", img)
+            cv2.imshow("SitUps", img)
             cv2.waitKey(1)
-            if cv2.getWindowProperty("Crunches", cv2.WND_PROP_AUTOSIZE) < 1:
+            if cv2.getWindowProperty("SitUps", cv2.WND_PROP_AUTOSIZE) < 1:
                 break
 
         cap.release()
