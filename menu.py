@@ -401,6 +401,11 @@ class MainWindow(QMainWindow):
         elif text == "Exercise":
             self.ActivateSitUps()
 
+    def displayCount(self, count, img):
+        cv2.rectangle(img, (50, 60), (450, 80), (240, 240, 240), 70)
+        cv2.putText(img, str("Count: "), (30, 100), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 5)
+        cv2.putText(img, str(count), (370, 105), cv2.FONT_HERSHEY_PLAIN, 6, (255, 0, 0), 5)
+
     def ActivateDumbbell(self):
         #cap = cv2.VideoCapture("Dataset/curls.mp4")
         cap = cv2.VideoCapture(0)
@@ -411,7 +416,7 @@ class MainWindow(QMainWindow):
 
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 720))
+            img = cv2.resize(img, (1900, 1000))
 
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
@@ -442,8 +447,7 @@ class MainWindow(QMainWindow):
                     win = po.Window()
                     cv2.waitKey(30000)
 
-                cv2.rectangle(img, (0, 570), (175, 720), (0, 255, 0), cv2.FILLED)
-                cv2.putText(img, str(int(count)), (30, 700), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0), 20)
+                self.displayCount(int(count), img)
 
             cv2.imshow("Dumbbell", img)
             cv2.waitKey(1)
@@ -467,7 +471,7 @@ class MainWindow(QMainWindow):
             if not success:
                 print("An error occurred")
 
-            img = cv2.resize(img, (1300, 720))
+            img = cv2.resize(img, (1900, 1000))
 
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
@@ -491,9 +495,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
+                target = 5
 
-                cv2.putText(img, str("Squats Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, color, 4)
-                cv2.putText(img, str(int(count)), (280, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
+                self.displayCount(int(count), img)
 
             cv2.imshow("Squats", img)
             cv2.waitKey(1)
@@ -515,7 +523,7 @@ class MainWindow(QMainWindow):
             success, img = cap.read()
             img = detector.findPose(img, False)
 
-            img = cv2.resize(img, (1400, 800))
+            img = cv2.resize(img, (1900, 1000))
             lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
@@ -540,8 +548,7 @@ class MainWindow(QMainWindow):
                     win = po.Window()
                     cv2.waitKey(30000)
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                self.displayCount(int(count), img)
 
             cv2.imshow("Push Ups", img)
             cv2.waitKey(1)
@@ -560,7 +567,8 @@ class MainWindow(QMainWindow):
         dir = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 720))
+            img = cv2.resize(img, (1900, 1000))
+
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
@@ -583,8 +591,7 @@ class MainWindow(QMainWindow):
                     win = po.Window()
                     cv2.waitKey(30000)
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                self.displayCount(int(count), img)
                 #cv2.putText(img, str(int(angle)), (170, 90), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Butt Bridge", img)
@@ -605,7 +612,8 @@ class MainWindow(QMainWindow):
         pTime = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 720))
+            img = cv2.resize(img, (1900, 1000))
+
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
@@ -625,8 +633,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
+                self.displayCount(int(count), img)
                 cv2.putText(img, str(int(leg)), (220, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Fire Hydrant", img)
@@ -646,7 +659,8 @@ class MainWindow(QMainWindow):
         pTime = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 750))
+            img = cv2.resize(img, (1900, 1000))
+
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
             if len(lmList) != 0:
@@ -670,8 +684,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
+                self.displayCount(int(count), img)
 
             cv2.imshow("Lunges", img)
             cv2.waitKey(1)
@@ -691,7 +710,8 @@ class MainWindow(QMainWindow):
         pTime = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 800))
+            img = cv2.resize(img, (1900, 1000))
+
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
             if len(lmList) != 0:
@@ -711,8 +731,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
+                self.displayCount(int(count), img)
 
             cv2.imshow("Up/Down Plank", img)
             cv2.waitKey(1)
@@ -732,9 +757,11 @@ class MainWindow(QMainWindow):
         pTime = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1300, 720))
+            img = cv2.resize(img, (1900, 1000))
+
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
+
             if len(lmList) != 0:
                 side1 = detector.findAngle(img, 12, 24, 26 )
                 #side2 = detector.findAngle(img, 11, 23, 25)
@@ -754,8 +781,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+                target = 5
+
+                if count == target:
+                    win = po.Window()
+                    cv2.waitKey(30000)
+
+                self.displayCount(int(count), img)
 
             cv2.imshow("Crunches", img)
             cv2.waitKey(1)
