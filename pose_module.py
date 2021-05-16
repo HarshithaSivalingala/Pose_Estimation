@@ -57,6 +57,8 @@ class poseDetector():
             cv2.circle(img, (x2, y2), 15, (0, 0, 255), 2)
             cv2.circle(img, (x3, y3), 10, (0, 0, 255), cv2.FILLED)
             cv2.circle(img, (x3, y3), 15, (0, 0, 255), 2)
+            cv2.putText(img, str(angle), (1000, 100), cv2.FONT_HERSHEY_PLAIN, 4, (255, 0, 0), 4)
+
 
         return angle
 

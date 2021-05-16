@@ -37,7 +37,9 @@ class Window(QMainWindow):
                                   "}")
         start.clicked.connect(self.launch_script)
 
+
     def launch_script(self):
+        self.hide()
         self.panel = osScript.MainWindow()
         self.panel.show()
 
