@@ -7,6 +7,10 @@ from PyQt5.QtWidgets import QLabel
 import pose_module
 import Popup
 import menu as osScript
+from PyQt5.QtWidgets import *
+from PyQt5.QtMultimedia import *
+from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtMultimedia import QSound
 
 class Window(QMainWindow):
     def __init__(self):
@@ -18,7 +22,6 @@ class Window(QMainWindow):
         palette.setBrush(QPalette.Window, QBrush(img))
         self.setPalette(palette)
         self.setMinimumSize(QSize(1250, 900))
-
         self.UiComponents()
         self.show()
 
@@ -43,7 +46,10 @@ class Window(QMainWindow):
         self.panel = osScript.MainWindow()
         self.panel.show()
 
+
 if __name__ == "__main__":
     App = QApplication(sys.argv)
+    sound = QSound("Dataset\sound1.wav")
+    sound.play()
     window = Window()
     sys.exit(App.exec())
