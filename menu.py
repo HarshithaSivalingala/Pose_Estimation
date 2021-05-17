@@ -459,8 +459,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSquat(self):
-        #cap = cv2.VideoCapture("Dataset/squat_main.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/squat_main.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -468,7 +468,7 @@ class MainWindow(QMainWindow):
 
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1900, 1000))
+            img = cv2.resize(img, (1800, 1000))
 
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
@@ -477,25 +477,27 @@ class MainWindow(QMainWindow):
                 # Left Leg
                 angle_l = detector.findAngle(img, 23, 25, 27)
                 # Right Leg
-                angle_r = detector.findAngle(img, 24, 26, 28)
+                #angle_r = detector.findAngle(img, 24, 26, 28)
                 per_l = np.interp(angle_l, (165, 70), (0, 100))
-                per_r = np.interp(angle_r, (165, 70), (0, 80))
+                #per_r = np.interp(angle_r, (165, 70), (0, 80))
+                print(angle_l, per_l)
 
                 # Checking count for squat
-                if per_l == 0 and per_r == 0:
+                if round(angle_l) in range(150, 170):
                     if dir == 0:
                         count += 0.5
                         dir = 1
 
-                if per_l == 100 and per_r == 100:
+                if round(angle_l) in range(50, 80):
                     if dir == 1:
                         count += 0.5
                         dir = 0
-                target = 5
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
+            target = 15
+
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
             self.displayCount(int(count), img)
 
             cv2.imshow("Squats", img)
@@ -562,7 +564,7 @@ class MainWindow(QMainWindow):
         dir = 0
         while True:
             success, img = cap.read()
-            img = cv2.resize(img, (1900, 1000))
+            img = cv2.resize(img, (1800, 1000))
             img = detector.findPose(img, False)
             lmList = detector.findPosition(img, False)
 
@@ -570,16 +572,16 @@ class MainWindow(QMainWindow):
                 angle = detector.findAngle(img, 12, 24, 26)
                 per = np.interp(angle, (190, 222), (0, 100))
 
-                if per == 100:
+                if round(angle) in range(170, 190):
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if per == 0:
+                if round(angle) in range(200, 230):
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
-                target = 5
+                target = 10
 
                 if count == target:
                     win = po.Window()
@@ -616,12 +618,12 @@ class MainWindow(QMainWindow):
 
                 # Checking count
                 color = (255, 0, 255)
-                if round(per) in range(95, 100):
+                if round(leg) in range(280, 300):
                     color = (0, 0, 255)
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if round(per) in range(0, 10):
+                if round(leg) in range(70,130):
                     color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5
@@ -629,8 +631,6 @@ class MainWindow(QMainWindow):
 
                 self.displayCount(int(count), img)
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
 
             cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)
@@ -703,12 +703,12 @@ class MainWindow(QMainWindow):
                 per = np.interp(hand, (90, 180), (0, 100))
                 #print(hand, per)
 
-                if round(per) in range(96, 100):
+                if round(hand) in range(150, 190):
                     color = (0, 0, 255)
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if round(per) in range(0, 8):
+                if round(hand) in range(70, 90):
                     color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5
@@ -746,17 +746,17 @@ class MainWindow(QMainWindow):
             if len(lmList) != 0:
                 rightside = detector.findAngle(img, 12, 24, 26 )
                 #leftside = detector.findAngle(img, 11, 23, 25)
-                per = np.interp(rightside, (60, 130), (0, 100))
+                per = np.interp(rightside, (200, 300), (0, 100))
                 #print(rightside, per)
 
                 # Checking count
                 color = (255, 0, 255)
-                if round(per) in range(95, 100):
+                if round(rightside) in range(290, 310):
                     color = (0, 0, 255)
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if round(per) in range(0, 10):
+                if round(rightside) in range(180,200):
                     color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5

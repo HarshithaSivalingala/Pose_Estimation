@@ -49,7 +49,7 @@ class Window(QMainWindow):
 
 if __name__ == "__main__":
     App = QApplication(sys.argv)
-    sound = QSound("Dataset\sound1.wav")
+    sound = QSound("Dataset\sound2.wav")
     sound.play()
     window = Window()
     sys.exit(App.exec())
