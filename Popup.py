@@ -56,7 +56,12 @@ class Window(QMainWindow):
                                   "{"
                                   "background-color : lightyellow;"
                                   "}")
-        pushButton2.pressed.connect(self.close)
+        pushButton2.pressed.connect(self.AppClose)
+
+    def AppClose(self):
+        self.close()
+        cv2.destroyAllWindows()
+
 
 
 # create pyqt5 app
