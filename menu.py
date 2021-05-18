@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateSquat(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/squats.mp4")
+            cap = cv2.VideoCapture("Dataset/squats1.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -151,7 +151,7 @@ class MainWindow(QMainWindow):
 
     def OnActivatePushUp(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/pushups.mp4")
+            cap = cv2.VideoCapture("Dataset/push_ups1.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -197,7 +197,8 @@ class MainWindow(QMainWindow):
 
     def OnActivateButtBridge(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/buttbridge.mp4")
+
+            cap = cv2.VideoCapture("Dataset/bb.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -244,7 +245,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateLunges(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/lunges.mp4")
+            cap = cv2.VideoCapture("Dataset/lunges1.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -291,7 +292,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateHydrant(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/fh.mp4")
+            cap = cv2.VideoCapture("Dataset/fh1.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -338,7 +339,7 @@ class MainWindow(QMainWindow):
 
     def OnActivatePlank(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/ud_plank.mp4")
+            cap = cv2.VideoCapture("Dataset/UpandDown1.mp4")
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
@@ -384,7 +385,7 @@ class MainWindow(QMainWindow):
 
     def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/sit_ups.mp4" )
+            cap = cv2.VideoCapture("Dataset/situps1.mp4" )
             while True:
                 success, img = cap.read()
                 img = cv2.resize(img, (1300, 720))
