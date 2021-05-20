@@ -1,7 +1,8 @@
 import cv2
 import time
 import mediapipe as mp
-import math
+import cv2
+import mediapipe as mp
 
 class poseDetector():
     def __init__(self, mode=False, upBody=False, smooth=True, detectionCon=0.5, trackCon=0.5):

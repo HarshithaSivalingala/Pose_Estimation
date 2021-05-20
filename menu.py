@@ -59,10 +59,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateDumbbell(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/dumbbell.mp4")
+            cap = cv2.VideoCapture("Resources/dumbbell.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success:
                     cv2.imshow("Dumbbell lifting", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -105,10 +105,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateSquat(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/squats.mp4")
+            cap = cv2.VideoCapture("Resources/Squats.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1300, 900))
                 if success == True:
                     cv2.imshow("Squat", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -151,10 +151,10 @@ class MainWindow(QMainWindow):
 
     def OnActivatePushUp(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/pushups.mp4")
+            cap = cv2.VideoCapture("Resources/pushups.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Push Ups", img)
                     if cv2.waitKey(20) & 0xFF == ord('q'):
@@ -197,10 +197,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateButtBridge(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/buttbridge.mp4")
+            cap = cv2.VideoCapture("Resources/butt_bridge.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Butt Bridge", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -244,10 +244,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateLunges(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/lunges.mp4")
+            cap = cv2.VideoCapture("Resources/lunges.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Lunges", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -291,10 +291,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateHydrant(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/fh.mp4")
+            cap = cv2.VideoCapture("Resources/fire_hydrant.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Fire Hydrant", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -338,10 +338,10 @@ class MainWindow(QMainWindow):
 
     def OnActivatePlank(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/ud_plank.mp4")
+            cap = cv2.VideoCapture("Resources/UDplank.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Up/Down Plank", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -384,10 +384,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/sit_ups.mp4" )
+            cap = cv2.VideoCapture("Resources/situps.mp4" )
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Sit_ups", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -590,8 +590,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -632,8 +632,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
-        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -675,8 +675,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateLunges(self):
-        #cap = cv2.VideoCapture("Dataset/lunge1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/lunge1.mp4")
+        #cap = cv2.VideoCapture(0)
         detector = pm.poseDetector()
         count = 0
         dir = 0
@@ -719,8 +719,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePlank(self):
-        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
