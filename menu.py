@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
             cap = cv2.VideoCapture("Resources/Squats.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1250, 900))
+                img = cv2.resize(img, (1300, 900))
                 if success == True:
                     cv2.imshow("Squat", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
