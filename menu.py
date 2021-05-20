@@ -406,41 +406,7 @@ class MainWindow(QMainWindow):
         cv2.putText(img, str("Count: "), (30, 100), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 5)
         cv2.putText(img, str(count), (370, 105), cv2.FONT_HERSHEY_PLAIN, 6, (255, 0, 0), 5)
 
-    def draw_text(self, frame, text, x, y, color=(0, 0, 0), thickness=15, size=10):
-        if x is not None and y is not None:
-            cv2.putText(frame, text, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, size, color, thickness)
-
-    def timer(self):
-        cap = cv2.VideoCapture(0)
-        init_time = time.time()
-        test_timeout = init_time + 16
-        final_timeout = init_time + 16
-        counter_timeout_text = init_time + 1
-        counter_timeout = init_time + 1
-        counter = 15
-        while (cap.isOpened()):
-            ret, frame = cap.read()
-            frame = cv2.resize(frame, (1800, 1000))
-            if ret == True:
-                center_x = int(frame.shape[0] / 1.5)
-                center_y = int(frame.shape[0] / 1.8)
-                if (time.time() > counter_timeout_text and time.time() < test_timeout):
-                    self.draw_text(frame, str(counter), center_x, center_y)
-                    counter_timeout_text += 0.03333
-                if (time.time() > counter_timeout and time.time() < test_timeout):
-                    counter -= 1
-                    counter_timeout += 1
-                cv2.imshow('Timer', frame)
-                if (cv2.waitKey(1) & 0xFF == ord('q')) or (time.time() > final_timeout):
-                    break
-            else:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
-
     def ActivateDumbbell(self):
-        self.timer()
         cap = cv2.VideoCapture("Dataset/curls.mp4")
         #cap = cv2.VideoCapture(0)
 
