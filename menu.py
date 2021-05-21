@@ -59,10 +59,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateDumbbell(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/dumbbell.mp4")
+            cap = cv2.VideoCapture("Resources/dumbbell.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success:
                     cv2.imshow("Dumbbell lifting", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -74,6 +74,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivateDumbbell()
 
     def Squat(self):
@@ -105,10 +106,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateSquat(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/squats.mp4")
+            cap = cv2.VideoCapture("Resources/Squats.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Squat", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -120,6 +121,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivateSquat()
 
     def PushUp(self):
@@ -151,10 +153,10 @@ class MainWindow(QMainWindow):
 
     def OnActivatePushUp(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/pushups.mp4")
+            cap = cv2.VideoCapture("Resources/pushups.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Push Ups", img)
                     if cv2.waitKey(20) & 0xFF == ord('q'):
@@ -166,6 +168,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivatePushUps()
 
     def Buttbridge(self):
@@ -197,10 +200,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateButtBridge(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/buttbridge.mp4")
+            cap = cv2.VideoCapture("Resources/butt_bridge.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Butt Bridge", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -212,6 +215,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivateButtBridge()
 
     def Lunges(self):
@@ -244,10 +248,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateLunges(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/lunges.mp4")
+            cap = cv2.VideoCapture("Resources/lunges.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Lunges", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -259,6 +263,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivateLunges()
 
     def Hydrant(self):
@@ -291,10 +296,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateHydrant(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/fh.mp4")
+            cap = cv2.VideoCapture("Resources/fire_hydrant.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Fire Hydrant", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -306,6 +311,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivateFireHydrant()
 
     def Plank(self):
@@ -338,10 +344,10 @@ class MainWindow(QMainWindow):
 
     def OnActivatePlank(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/ud_plank.mp4")
+            cap = cv2.VideoCapture("Resources/UDplank.mp4")
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Up/Down Plank", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -353,6 +359,7 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
+            self.hide()
             self.ActivatePlank()
 
     def SitUps(self):
@@ -384,10 +391,10 @@ class MainWindow(QMainWindow):
 
     def OnActivateSitUps(self, text):
         if text == "Demo":
-            cap = cv2.VideoCapture("Dataset/sit_ups.mp4" )
+            cap = cv2.VideoCapture("Resources/situps.mp4" )
             while True:
                 success, img = cap.read()
-                img = cv2.resize(img, (1300, 720))
+                img = cv2.resize(img, (1250, 900))
                 if success == True:
                     cv2.imshow("Sit_ups", img)
                     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -401,10 +408,13 @@ class MainWindow(QMainWindow):
         elif text == "Exercise":
             self.ActivateSitUps()
 
-    def displayCount(self, count, img):
+    def displayCount(self, count, img, target):
         cv2.rectangle(img, (50, 60), (450, 80), (240, 240, 240), 70)
         cv2.putText(img, str("Count: "), (30, 100), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 5)
         cv2.putText(img, str(count), (370, 105), cv2.FONT_HERSHEY_PLAIN, 6, (255, 0, 0), 5)
+        cv2.rectangle(img, (1200, 60), (1700, 80), (240, 240, 240), 70)
+        cv2.putText(img, str("Target: "), (1200, 100), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 5)
+        cv2.putText(img, str(target), (1600, 105), cv2.FONT_HERSHEY_PLAIN, 6, (255, 0, 0), 5)
 
     def draw_text(self,frame, text, x, y, color=(0, 0, 0), thickness=15, size=10):
         if x is not None and y is not None:
@@ -475,13 +485,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                target = 5
+            target = 5
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
 
-            self.displayCount(int(count), img)
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("Dumbbell", img)
             cv2.waitKey(1)
@@ -493,7 +503,7 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSquat(self):
-        self.timer()
+        #self.timer()
         cap = cv2.VideoCapture("Dataset/squat_main.mp4")
         #cap = cv2.VideoCapture(0)
 
@@ -528,12 +538,12 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 15
+            target = 3
 
             if count == target:
                 win = po.Window()
                 cv2.waitKey(30000)
-            self.displayCount(int(count), img)
+            self.displayCount(int(count), img, str(target))
 
             cv2.imshow("Squats", img)
             cv2.waitKey(1)
@@ -544,7 +554,7 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
-        self.timer()
+        #self.timer()
         cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
@@ -575,13 +585,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                target = 5
+            target = 5
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
 
-            self.displayCount(int(count), img)
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("Push Ups", img)
             cv2.waitKey(1)
@@ -618,13 +628,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                target = 10
+            target = 10
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
 
-            self.displayCount(int(count), img)
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
@@ -667,7 +677,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                self.displayCount(int(count), img)
+            target = 10
+
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
+
+            self.displayCount(int(count), img, target)
 
 
             cv2.imshow("Fire Hydrant", img)
@@ -712,8 +728,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                cv2.putText(img, str("Count: "), (30, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 4)
-                cv2.putText(img, str(int(count)), (170, 65), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 4)
+            target = 10
+
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
+
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("Lunges", img)
             cv2.waitKey(1)
@@ -754,12 +775,12 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                target = 5
+            target = 5
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
-            self.displayCount(int(count), img)
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("Up/Down Plank", img)
             cv2.waitKey(1)
@@ -803,13 +824,13 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-                target = 5
+            target = 5
 
-                if count == target:
-                    win = po.Window()
-                    cv2.waitKey(30000)
+            if count == target:
+                win = po.Window()
+                cv2.waitKey(30000)
 
-            self.displayCount(int(count), img)
+            self.displayCount(int(count), img, target)
 
             cv2.imshow("SitUps", img)
             cv2.waitKey(1)

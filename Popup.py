@@ -60,6 +60,7 @@ class Window(QMainWindow):
 
     def AppClose(self):
         self.close()
+        
         cv2.destroyAllWindows()
 
 
