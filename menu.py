@@ -17,6 +17,10 @@ import Popup as po
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
+        img = QImage("Dataset/menu3.png")
+        palette = QPalette()
+        palette.setBrush(QPalette.Window, QBrush(img))
+        self.setPalette(palette)
         self.setMinimumSize(QSize(1250, 900))
         #self.setStyleSheet("background-color: grey;")
         self.setWindowTitle("Menu")
@@ -24,7 +28,6 @@ class MainWindow(QMainWindow):
         self.Squat()
         self.PushUp()
         self.Buttbridge()
-        self.Lunges()
         self.Hydrant()
         self.Plank()
         self.SitUps()
@@ -33,7 +36,7 @@ class MainWindow(QMainWindow):
     def Dumbbell(self):
         # Setting up a combo list
         self.comboBox1 = QComboBox(self)
-        self.comboBox1.setGeometry(400, 200, 350, 50)
+        self.comboBox1.setGeometry(200, 200, 350, 50)
         list = ["Demo", "Exercise"]
         self.comboBox1.addItems(list)
         self.comboBox1.setEditable(True)
@@ -44,16 +47,16 @@ class MainWindow(QMainWindow):
         dumbbell.setFont(QFont('Castellar', 17))
         dumbbell.setStyleSheet("QPushButton"
                                "{"
-                               "background-color : lightgreen;"
+                               "background-color : black; color: white"
                                "}"
                                "QPushButton::hover"
                                "{"
-                               "background-color : lightyellow;"
+                               "background-color : darkgrey;"
                                "}")
         # dumbbell.setStyleSheet("background-color : yellow")
         dumbbell.pressed.connect(self.comboBox1.showPopup)
         dumbbell.resize(350, 50)
-        dumbbell.move(400, 200)
+        dumbbell.move(200, 200)
 
         self.comboBox1.activated[str].connect(self.OnActivateDumbbell)
 
@@ -80,7 +83,7 @@ class MainWindow(QMainWindow):
     def Squat(self):
         # Setting up a combo list
         self.combo_box2 = QComboBox(self)
-        self.combo_box2.setGeometry(400, 280, 350, 50)
+        self.combo_box2.setGeometry(200, 280, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box2.addItems(list)
         self.combo_box2.setEditable(True)
@@ -91,16 +94,16 @@ class MainWindow(QMainWindow):
         squat.setFont(QFont('Castellar', 17))
         squat.setStyleSheet("QPushButton"
                             "{"
-                            "background-color : lightgreen;"
+                            "background-color : black; color: white"
                             "}"
                             "QPushButton::hover"
                             "{"
-                            "background-color : lightyellow;"
+                            "background-color : darkgrey;"
                             "}")
         # squat.setStyleSheet("background-color : pink")
         squat.clicked.connect(self.combo_box2.showPopup)
         squat.resize(350, 50)
-        squat.move(400, 280)
+        squat.move(200, 280)
 
         self.combo_box2.activated[str].connect(self.OnActivateSquat)
 
@@ -127,7 +130,7 @@ class MainWindow(QMainWindow):
     def PushUp(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 360, 350, 50)
+        self.combo_box.setGeometry(200, 360, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -138,16 +141,16 @@ class MainWindow(QMainWindow):
         push.setFont(QFont('Castellar', 17))
         push.setStyleSheet("QPushButton"
                            "{"
-                           "background-color : lightgreen;"
+                           "background-color : black; color: white"
                            "}"
                            "QPushButton::hover"
                            "{"
-                           "background-color : lightyellow;"
+                           "background-color : darkgray;"
                            "}")
         # push.setStyleSheet("background-color : yellow")
         push.clicked.connect(self.combo_box.showPopup)
         push.resize(350, 50)
-        push.move(400, 360)
+        push.move(200, 360)
 
         self.combo_box.activated[str].connect(self.OnActivatePushUp)
 
@@ -174,7 +177,7 @@ class MainWindow(QMainWindow):
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 440, 350, 50)
+        self.combo_box.setGeometry(200, 440, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -185,16 +188,16 @@ class MainWindow(QMainWindow):
         buttBridge.setFont(QFont('Castellar', 17))
         buttBridge.setStyleSheet("QPushButton"
                                  "{"
-                                 "background-color : lightgreen;"
+                                 "background-color : black; color: white"
                                  "}"
                                  "QPushButton::hover"
                                  "{"
-                                 "background-color : lightyellow;"
+                                 "background-color : darkgrey;"
                                  "}")
         # buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.combo_box.showPopup)
         buttBridge.resize(350, 50)
-        buttBridge.move(400, 440)
+        buttBridge.move(200, 440)
 
         self.combo_box.activated[str].connect(self.OnActivateButtBridge)
 
@@ -218,58 +221,10 @@ class MainWindow(QMainWindow):
             self.hide()
             self.ActivateButtBridge()
 
-    def Lunges(self):
-        # Setting up a combo list
-        self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 520, 350, 50)
-        list = ["Demo", "Exercise"]
-        self.combo_box.addItems(list)
-        self.combo_box.setEditable(True)
-        font = QFont('Arial', 11)
-        self.combo_box.setFont(font)
-
-        # creating a button
-        lunges = QPushButton('Lunges', self)
-        lunges.setFont(QFont('Castellar', 17))
-        lunges.setStyleSheet("QPushButton"
-                             "{"
-                             "background-color : lightgreen;"
-                             "}"
-                             "QPushButton::hover"
-                             "{"
-                             "background-color : lightyellow;"
-                             "}")
-        # lunges.setStyleSheet("background-color : yellow")
-        lunges.clicked.connect(self.combo_box.showPopup)
-        lunges.resize(350, 50)
-        lunges.move(400, 520)
-
-        self.combo_box.activated[str].connect(self.OnActivateLunges)
-
-    def OnActivateLunges(self, text):
-        if text == "Demo":
-            cap = cv2.VideoCapture("Resources/lunges1.mp4")
-            while True:
-                success, img = cap.read()
-                img = cv2.resize(img, (1250, 900))
-                if success == True:
-                    cv2.imshow("Lunges", img)
-                    if cv2.waitKey(10) & 0xFF == ord('q'):
-                        break
-                if cv2.getWindowProperty("Lunges", cv2.WND_PROP_AUTOSIZE) < 1:
-                    break
-
-            cap.release()
-            cv2.destroyAllWindows()
-
-        elif text == "Exercise":
-            self.hide()
-            self.ActivateLunges()
-
     def Hydrant(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 600, 350, 50)
+        self.combo_box.setGeometry(200, 520, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -277,20 +232,20 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # Creating a button
-        hydrant = QPushButton('Fire Hydrant Right', self)
+        hydrant = QPushButton('Fire Hydrant', self)
         hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
-                              "background-color : lightgreen;"
+                              "background-color : black; color: white"
                               "}"
                               "QPushButton::hover"
                               "{"
-                              "background-color : lightyellow;"
+                              "background-color : darkgrey;"
                               "}")
         # hydrant.setStyleSheet("background-color : pink")
         hydrant.clicked.connect(self.combo_box.showPopup)
         hydrant.resize(350, 50)
-        hydrant.move(400, 600)
+        hydrant.move(200, 520)
 
         self.combo_box.activated[str].connect(self.OnActivateHydrant)
 
@@ -317,7 +272,7 @@ class MainWindow(QMainWindow):
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 680, 350, 50)
+        self.combo_box.setGeometry(200, 600, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -329,16 +284,16 @@ class MainWindow(QMainWindow):
         plank.setFont(QFont('Castellar', 17))
         plank.setStyleSheet("QPushButton"
                             "{"
-                            "background-color : lightgreen;"
+                            "background-color : black; color: white"
                             "}"
                             "QPushButton::hover"
                             "{"
-                            "background-color : lightyellow;"
+                            "background-color : darkgrey;"
                             "}")
         # plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.combo_box.showPopup)
         plank.resize(350, 50)
-        plank.move(400, 680)
+        plank.move(200, 600)
 
         self.combo_box.activated[str].connect(self.OnActivatePlank)
 
@@ -365,7 +320,7 @@ class MainWindow(QMainWindow):
     def SitUps(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(400, 760, 350, 50)
+        self.combo_box.setGeometry(200, 680, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -374,18 +329,19 @@ class MainWindow(QMainWindow):
 
         Sit_ups = QPushButton('Sit Ups', self)
         Sit_ups.setFont(QFont('Castellar', 17))
+        #Sit_ups.setStyleSheet("border : 2px solid black; border - radius: 25px;")
         Sit_ups.setStyleSheet("QPushButton"
                              "{"
-                             "background-color : lightgreen;"
+                             "background-color : black; color: white"
                              "}"
                              "QPushButton::hover"
                              "{"
-                             "background-color : lightyellow;"
+                             "background-color : darkgrey;"
                              "}")
         # Sit_ups.setStyleSheet("background-color : yellow")
         Sit_ups.clicked.connect(self.combo_box.showPopup)
         Sit_ups.resize(350, 50)
-        Sit_ups.move(400, 760)
+        Sit_ups.move(200, 680)
 
         self.combo_box.activated[str].connect(self.OnActivateSitUps)
 
@@ -686,56 +642,6 @@ class MainWindow(QMainWindow):
             cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)
             if cv2.getWindowProperty("Fire Hydrant", cv2.WND_PROP_AUTOSIZE) < 1:
-                break
-
-        cap.release()
-        cv2.destroyAllWindows()
-
-    def ActivateLunges(self):
-        self.timer()
-        #cap = cv2.VideoCapture("Dataset/lunge1.mp4")
-        cap = cv2.VideoCapture(0)
-        detector = pm.poseDetector()
-        count = 0
-        dir = 0
-        pTime = 0
-        while True:
-            success, img = cap.read()
-            img = cv2.resize(img, (1300, 750))
-            img = detector.findPose(img, False)
-            lmList = detector.findPosition(img, False)
-            if len(lmList) != 0:
-                # Left Leg
-                leg2 = detector.findAngle(img, 23, 25, 27)
-                per2 = np.interp(leg2, (190, 280), (0, 100))
-                #Right leg
-                leg1 = detector.findAngle(img, 24, 26, 28)
-                per1 = np.interp(leg1, (190, 290), (0, 100))
-
-                # Checking count
-                color = (255, 0, 255)
-                if (round(per1) in range(80, 100)) and (round(per2) in range(40, 75)):
-                    color = (0, 0, 255)
-                    if dir == 0:
-                        count += 0.5
-                        dir = 1
-                if (round(per1) in range(0, 10)) and (round(per2) in range(0, 10)):
-                    color = (0, 0, 255)
-                    if dir == 1:
-                        count += 0.5
-                        dir = 0
-
-            target = 10
-
-            if count == target:
-                win = po.Window()
-                cv2.waitKey(30000)
-
-            self.displayCount(int(count), img, target)
-
-            cv2.imshow("Lunges", img)
-            cv2.waitKey(1)
-            if cv2.getWindowProperty("Lunges", cv2.WND_PROP_AUTOSIZE) < 1:
                 break
 
         cap.release()

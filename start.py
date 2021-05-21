@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtMultimedia import QSound
+from pygame import mixer
 
 class Window(QMainWindow):
     def __init__(self):
@@ -26,6 +27,19 @@ class Window(QMainWindow):
         self.show()
 
     def UiComponents(self):
+        play = QPushButton("", self)
+        play.setGeometry(1070, 40, 60, 60)
+        play.setStyleSheet("border-radius : 30")
+        play.clicked.connect(self.play_music)
+
+        stop = QPushButton("", self)
+        stop.setGeometry(1160, 40, 60, 60)
+        stop.setStyleSheet("border-radius : 30")
+        stop.setFont(QFont('Times', 7))
+        stop.clicked.connect(self.stop_music)
+
+
+
         start = QPushButton("Let's Begin", self)
         start.resize(200, 60)
         start.move(650, 600)
@@ -45,10 +59,19 @@ class Window(QMainWindow):
         self.panel = osScript.MainWindow()
         self.panel.show()
 
+    def play_music(self):
+        mixer.init()
+        mixer.music.set_volume(0.7)
+        mixer.music.load("Dataset/sound1.wav")
+        mixer.music.play()
+
+    def stop_music(self):
+        mixer.music.stop()
+
 
 if __name__ == "__main__":
     App = QApplication(sys.argv)
-    sound = QSound("Dataset\sound2.wav")
-    sound.play()
+    #sound = QSound("Dataset\sound2.wav")
+    #sound.play()
     window = Window()
     sys.exit(App.exec())
