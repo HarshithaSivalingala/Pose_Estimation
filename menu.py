@@ -232,7 +232,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # Creating a button
-        hydrant = QPushButton('Fire Hydrant', self)
+        hydrant = QPushButton('Fire Hydrant Right', self)
         hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
@@ -386,11 +386,17 @@ class MainWindow(QMainWindow):
         counter = 15
         while (cap.isOpened()):
             ret, frame = cap.read()
-            frame = cv2.resize(frame, (1800, 1000))
+            frame = cv2.resize(frame, (1900, 1100))
+            cv2.putText(frame, str("INSTRUCTIONS"), (90, 300), cv2.FONT_HERSHEY_PLAIN, 6, (0,0,255), 6)
+            cv2.putText(frame, str("-> Always use an exercise mat while exercising"), (90, 400), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
+            cv2.putText(frame, str("-> Place your camera 2-3 meters away from yourself"), (90, 500), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
+            cv2.putText(frame, str("-> Set the camera angle in such a way that your whole"), (90, 600), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
+            cv2.putText(frame, str("    body is captured"), (90, 700), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
+            cv2.putText(frame, str("-> Refer demo videos once before you start exercising"), (90, 800), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
             if ret == True:
-                center_x = int(frame.shape[0] / 1.5)
+                center_x = int(frame.shape[0] / 1.8)
                 center_y = int(frame.shape[0] / 1.8)
-                if (time.time() > counter_timeout_text and time.time() < test_timeout):
+                if(time.time() > counter_timeout_text and time.time() < test_timeout):
                     self.draw_text(frame, str(counter), center_x, center_y)
                     counter_timeout_text += 0.03333
                 if (time.time() > counter_timeout and time.time() < test_timeout):
