@@ -15,7 +15,6 @@ class poseDetector():
         self.mpPose = mp.solutions.pose
         self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth, self.detectionCon, self.trackCon)
 
-
     def findPose(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(imgRGB)
@@ -63,7 +62,7 @@ class poseDetector():
         return angle
 
 def main():
-    cap = cv2.VideoCapture('Dataset/exercise1.mp4')
+    cap = cv2.VideoCapture('Dataset/curls.mp4')
     #cap = cv2.VideoCapture(0)
     pTime = 0
     detector = poseDetector()

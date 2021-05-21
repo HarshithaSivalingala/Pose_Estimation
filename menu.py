@@ -277,7 +277,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # Creating a button
-        hydrant = QPushButton('Fire Hydrant', self)
+        hydrant = QPushButton('Fire Hydrant Right', self)
         hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
@@ -451,8 +451,8 @@ class MainWindow(QMainWindow):
 
     def ActivateDumbbell(self):
         self.timer()
-        cap = cv2.VideoCapture("Dataset/curls.mp4")
-        #cap = cv2.VideoCapture(0)
+        # cap = cv2.VideoCapture("Dataset/curls.mp4")
+        cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -660,18 +660,16 @@ class MainWindow(QMainWindow):
             lmList = detector.findPosition(img, False)
 
             if len(lmList) != 0:
-                leg1 = detector.findAngle(img, 23, 25, 27)
-                leg = detector.findAngle(img, 24, 26, 28)
-                per = np.interp(leg, (88, 295), (0, 100))
+                leg_l = detector.findAngle(img, 23, 25, 27)
+                leg_r = detector.findAngle(img, 24, 26, 28)
+                per_r = np.interp(leg_r, (88, 295), (0, 100))
 
                 # Checking count
-                color = (255, 0, 255)
-                if round(leg) in range(280, 300):
-                    color = (0, 0, 255)
+                if round(leg_r) in range(280, 300):
                     if dir == 0:
                         count += 0.5
                         dir = 1
-                if round(leg) in range(70,130):
+                if round(leg_r) in range(70, 130):
                     color = (0, 0, 255)
                     if dir == 1:
                         count += 0.5
@@ -684,7 +682,6 @@ class MainWindow(QMainWindow):
                 cv2.waitKey(30000)
 
             self.displayCount(int(count), img, target)
-
 
             cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)

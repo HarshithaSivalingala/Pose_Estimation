@@ -1,0 +1,91 @@
+\documentclass[14pt]{beamer}
+
+\title{Human Pose Estimation}
+
+\author[]{K. Sritulasi: 19WH1A0488: ECE \vspace*{0.1cm} \newline G. Neha: 19WH1A05E4: CSE \vspace*{0.1cm} \newline BH. Sai Sruthi: 19WH1A0227: EEE \vspace*{0.1cm} \newline S. Sai Harshitha: 19WH1A1253: IT \vspace*{0.1cm} \newline K. Mahitha: 19WH1A05E8: CSE \vspace*{0.1cm} \newline P. Pratyusha: 19WH1A0528: CSE \newline \vspace*{0.2cm} \small {\newline BVRIT HYDERABAD College of Engineering for Women}}
+
+\date{May 21, 2021}
+
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Introduction}
+\begin{itemize}
+	\item Detecting key points and join them to estimate the pose
+	\item Types: 2D and 3D pose estimations
+		\begin{center}
+			\includegraphics[height=5cm, width=8cm]{keypoints.png}
+		\end{center}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approach}
+		\begin{itemize}
+			\item Estimate the pose using mediapipe
+			\item Capture user's movements while doing the exercise
+			\item Increase the count accordingly
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Features}
+	\begin{itemize}
+		\item Already added: Daily targets, demo and instructions for every exercise
+		\item To be added: Calories burnt
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Next steps}
+\begin{itemize}
+	\item Consider inputs from the user and calculate number of calories burnt
+	\item Put a "Do it again" button
+	\item Add a button for music on and off
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Challenges}
+	\begin{itemize}
+		\item Coming up with an efficient algorithm
+		\item Determining the exact threshold for the count
+		\item Having a single flow without multiple windows
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Tech Stack}
+\begin{itemize}
+	\item LaTeX
+	\item Python 3.9
+	\item PyCharm
+	\item Library: OpenCV
+	\item MediaPipe
+	\item GUI: PyQt5
+	\item Git
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Git Repo}
+	\begin{center}
+	\includegraphics[width=10cm, height=7cm] {poseGit.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	\textbf{\huge DEMO}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	\textbf{\huge Thank You!}
+\end{center}
+\end{frame}
+
+\end{document}
