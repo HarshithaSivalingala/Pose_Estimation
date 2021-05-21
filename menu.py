@@ -277,7 +277,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # Creating a button
-        hydrant = QPushButton('Fire Hydrant', self)
+        hydrant = QPushButton('Fire Hydrant Right', self)
         hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
