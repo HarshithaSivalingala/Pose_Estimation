@@ -387,7 +387,6 @@ class MainWindow(QMainWindow):
         while (cap.isOpened()):
             ret, frame = cap.read()
             frame = cv2.resize(frame, (1900, 1100))
-            cv2.putText(frame, str("INSTRUCTIONS"), (90, 300), cv2.FONT_HERSHEY_PLAIN, 6, (0,0,255), 6)
             if ret == True:
                 center_x = int(frame.shape[0] / 0.8)
                 center_y = int(frame.shape[0] / 3.6)
