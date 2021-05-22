@@ -388,14 +388,9 @@ class MainWindow(QMainWindow):
             ret, frame = cap.read()
             frame = cv2.resize(frame, (1900, 1100))
             cv2.putText(frame, str("INSTRUCTIONS"), (90, 300), cv2.FONT_HERSHEY_PLAIN, 6, (0,0,255), 6)
-            cv2.putText(frame, str("-> Always use an exercise mat while exercising"), (90, 400), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
-            cv2.putText(frame, str("-> Place your camera 2-3 meters away from yourself"), (90, 500), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
-            cv2.putText(frame, str("-> Set the camera angle in such a way that your whole"), (90, 600), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
-            cv2.putText(frame, str("    body is captured"), (90, 700), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
-            cv2.putText(frame, str("-> Refer demo videos once before you start exercising"), (90, 800), cv2.FONT_HERSHEY_PLAIN, 3.5, (0,255,0), 3)
             if ret == True:
-                center_x = int(frame.shape[0] / 1.8)
-                center_y = int(frame.shape[0] / 1.8)
+                center_x = int(frame.shape[0] / 0.8)
+                center_y = int(frame.shape[0] / 3.6)
                 if(time.time() > counter_timeout_text and time.time() < test_timeout):
                     self.draw_text(frame, str(counter), center_x, center_y)
                     counter_timeout_text += 0.03333
@@ -465,7 +460,7 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateSquat(self):
-        self.timer()
+        #self.timer()
         cap = cv2.VideoCapture("Dataset/squat_main.mp4")
         #cap = cv2.VideoCapture(0)
 

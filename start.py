@@ -12,6 +12,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtMultimedia import QSound
 from pygame import mixer
+import instructions as script
 
 class Window(QMainWindow):
     def __init__(self):
@@ -41,9 +42,9 @@ class Window(QMainWindow):
 
 
         start = QPushButton("Let's Begin", self)
-        start.resize(200, 60)
+        start.resize(300, 70)
         start.move(650, 600)
-        start.setFont(QFont('Times', 20))
+        start.setFont(QFont('Garamond', 20))
         start.setStyleSheet("QPushButton"
                                   "{"
                                   "background-color : white;"
@@ -53,16 +54,32 @@ class Window(QMainWindow):
                                   "background-color : lightyellow;"
                                   "}")
         start.clicked.connect(self.launch_script)
+        start = QPushButton("Instructions", self)
+        start.resize(300, 70)
+        start.move(650, 700)
+        start.setFont(QFont('Garamond', 20))
+        start.setStyleSheet("QPushButton"
+                            "{"
+                            "background-color : white;"
+                            "}"
+                            "QPushButton::hover"
+                            "{"
+                            "background-color : lightyellow;"
+                            "}")
+        start.clicked.connect(self.instructions)
 
     def launch_script(self):
         self.hide()
         self.panel = osScript.MainWindow()
         self.panel.show()
+    def instructions(self):
+        self.panel = script.Instructions()
+        self.panel.show()
 
     def play_music(self):
         mixer.init()
         mixer.music.set_volume(0.7)
-        mixer.music.load("Dataset/sound1.wav")
+        mixer.music.load("Dataset/sound2.wav")
         mixer.music.play()
 
     def stop_music(self):

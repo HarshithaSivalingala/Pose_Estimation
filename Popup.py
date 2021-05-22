@@ -58,6 +58,7 @@ class Window(QMainWindow):
         cv2.destroyAllWindows()
 
     def launch_script(self):
+        self.close()
         cv2.destroyAllWindows()
         self.panel = osScript.MainWindow()
         self.panel.show()
