@@ -39,8 +39,6 @@ class Window(QMainWindow):
         stop.setFont(QFont('Times', 7))
         stop.clicked.connect(self.stop_music)
 
-
-
         start = QPushButton("Let's Begin", self)
         start.resize(300, 70)
         start.move(650, 600)
@@ -72,6 +70,7 @@ class Window(QMainWindow):
         self.hide()
         self.panel = osScript.MainWindow()
         self.panel.show()
+
     def instructions(self):
         self.panel = script.Instructions()
         self.panel.show()

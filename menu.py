@@ -26,9 +26,9 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Menu")
         self.Dumbbell()
         self.Squat()
-        self.PushUp()
+        # self.PushUp()
         self.Buttbridge()
-        self.Hydrant()
+        # self.Hydrant()
         self.Plank()
         self.SitUps()
         self.show()
@@ -147,7 +147,7 @@ class MainWindow(QMainWindow):
                            "{"
                            "background-color : darkgray;"
                            "}")
-        # push.setStyleSheet("background-color : yellow")
+
         push.clicked.connect(self.combo_box.showPopup)
         push.resize(350, 50)
         push.move(200, 360)
@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 440, 350, 50)
+        self.combo_box.setGeometry(200, 360, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -197,7 +197,7 @@ class MainWindow(QMainWindow):
         # buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.combo_box.showPopup)
         buttBridge.resize(350, 50)
-        buttBridge.move(200, 440)
+        buttBridge.move(200, 360)
 
         self.combo_box.activated[str].connect(self.OnActivateButtBridge)
 
@@ -272,7 +272,7 @@ class MainWindow(QMainWindow):
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 600, 350, 50)
+        self.combo_box.setGeometry(200, 440, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -293,7 +293,7 @@ class MainWindow(QMainWindow):
         # plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.combo_box.showPopup)
         plank.resize(350, 50)
-        plank.move(200, 600)
+        plank.move(200, 440)
 
         self.combo_box.activated[str].connect(self.OnActivatePlank)
 
@@ -320,7 +320,7 @@ class MainWindow(QMainWindow):
     def SitUps(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 680, 350, 50)
+        self.combo_box.setGeometry(200, 520, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -341,7 +341,7 @@ class MainWindow(QMainWindow):
         # Sit_ups.setStyleSheet("background-color : yellow")
         Sit_ups.clicked.connect(self.combo_box.showPopup)
         Sit_ups.resize(350, 50)
-        Sit_ups.move(200, 680)
+        Sit_ups.move(200, 520)
 
         self.combo_box.activated[str].connect(self.OnActivateSitUps)
 
@@ -407,7 +407,7 @@ class MainWindow(QMainWindow):
 
     def ActivateDumbbell(self):
         self.timer()
-        # cap = cv2.VideoCapture("Dataset/curls.mp4")
+        #cap = cv2.VideoCapture("Dataset/curls.mp4")
         cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
@@ -573,18 +573,19 @@ class MainWindow(QMainWindow):
 
             if len(lmList) != 0:
                 angle = detector.findAngle(img, 12, 24, 26)
-                per = np.interp(angle, (190, 222), (0, 100))
+                #per = np.interp(angle, (190, 222), (0, 100))
 
                 if round(angle) in range(170, 190):
                     if dir == 0:
                         count += 0.5
                         dir = 1
+
                 if round(angle) in range(200, 230):
                     if dir == 1:
                         count += 0.5
                         dir = 0
 
-            target = 10
+            target = 5
 
             if count == target:
                 win = po.Window()
@@ -649,8 +650,8 @@ class MainWindow(QMainWindow):
 
     def ActivatePlank(self):
         self.timer()
-        #cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/ud_plank1.mp4")
+        #cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
