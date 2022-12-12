@@ -26,9 +26,9 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Menu")
         self.Dumbbell()
         self.Squat()
-        # self.PushUp()
+        self.PushUp()
         self.Buttbridge()
-        # self.Hydrant()
+        self.Hydrant()
         self.Plank()
         self.SitUps()
         self.show()
@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
     def Buttbridge(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 360, 350, 50)
+        self.combo_box.setGeometry(200, 440, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -197,7 +197,7 @@ class MainWindow(QMainWindow):
         # buttBridge.setStyleSheet("background-color : pink")
         buttBridge.clicked.connect(self.combo_box.showPopup)
         buttBridge.resize(350, 50)
-        buttBridge.move(200, 360)
+        buttBridge.move(200, 440)
 
         self.combo_box.activated[str].connect(self.OnActivateButtBridge)
 
@@ -272,7 +272,7 @@ class MainWindow(QMainWindow):
     def Plank(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 440, 350, 50)
+        self.combo_box.setGeometry(200, 600, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -293,7 +293,7 @@ class MainWindow(QMainWindow):
         # plank.setStyleSheet("background-color : yellow")
         plank.clicked.connect(self.combo_box.showPopup)
         plank.resize(350, 50)
-        plank.move(200, 440)
+        plank.move(200, 600)
 
         self.combo_box.activated[str].connect(self.OnActivatePlank)
 
@@ -320,7 +320,7 @@ class MainWindow(QMainWindow):
     def SitUps(self):
         # Setting up a combo list
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(200, 520, 350, 50)
+        self.combo_box.setGeometry(200, 680, 350, 50)
         list = ["Demo", "Exercise"]
         self.combo_box.addItems(list)
         self.combo_box.setEditable(True)
@@ -341,7 +341,7 @@ class MainWindow(QMainWindow):
         # Sit_ups.setStyleSheet("background-color : yellow")
         Sit_ups.clicked.connect(self.combo_box.showPopup)
         Sit_ups.resize(350, 50)
-        Sit_ups.move(200, 520)
+        Sit_ups.move(200, 680)
 
         self.combo_box.activated[str].connect(self.OnActivateSitUps)
 
