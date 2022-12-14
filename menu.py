@@ -4,25 +4,23 @@ import numpy as np
 import time
 import pose_module as pm
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
-from PyQt5.QtWidgets import QPushButton
-from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from PyQt5.QtWidgets import QMessageBox
 
 import Popup as po
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        self.exercises = {1: "dumbbell", 2: "squats", 3: "push ups", 4: "butt bridge", 5: "fire hydrant", 6: "up-down plank", 7: "sit ups"}
+        self.target = 0
+        self.current_exercise = 0
         QMainWindow.__init__(self)
         img = QImage("Dataset/menu3.png")
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(img))
         self.setPalette(palette)
         self.setMinimumSize(QSize(1250, 900))
-        #self.setStyleSheet("background-color: grey;")
         self.setWindowTitle("Menu")
         self.Dumbbell()
         self.Squat()
@@ -32,6 +30,39 @@ class MainWindow(QMainWindow):
         self.Plank()
         self.SitUps()
         self.show()
+
+    def getTarget(self):
+        self.textbox = QLineEdit(self)
+        self.textbox.move(20, 20)
+        self.textbox.resize(280, 40)
+
+        self.button = QPushButton('Set Target', self)
+        self.button.move(20, 80)
+
+        self.button.clicked.connect(self.on_click)
+        self.show()
+
+    @pyqtSlot()
+    def on_click(self):
+        self.target = int(self.textbox.text())
+        self.textbox.setText("")
+        print(self.current_exercise, self.exercises[self.current_exercise])
+        exercise = self.exercises[self.current_exercise]
+        # 2: "squats", 3: "push ups", 4: "butt bridge", 5: "fire hydrant", 6: "up-down plank", 7: "sit ups"
+        if exercise == "dumbbell":
+            self.ActivateDumbbell()
+        elif exercise == "squats":
+            self.ActivateSquat()
+        elif exercise == "push ups":
+            self.ActivatePushUps()
+        elif exercise == "butt bridge":
+            self.ActivateButtBridge()
+        elif exercise == "fire hydrant":
+            self.ActivateFireHydrant()
+        elif exercise == "up-down plank":
+            self.ActivatePlank()
+        elif exercise == "sit ups":
+            self.ActivateSitUps()
 
     def Dumbbell(self):
         # Setting up a combo list
@@ -78,7 +109,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivateDumbbell()
+            self.current_exercise = 1
+            self.getTarget()
 
     def Squat(self):
         # Setting up a combo list
@@ -125,7 +157,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivateSquat()
+            self.current_exercise = 2
+            self.getTarget()
 
     def PushUp(self):
         # Setting up a combo list
@@ -172,7 +205,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivatePushUps()
+            self.current_exercise = 3
+            self.getTarget()
 
     def Buttbridge(self):
         # Setting up a combo list
@@ -219,7 +253,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivateButtBridge()
+            self.current_exercise = 4
+            self.getTarget()
 
     def Hydrant(self):
         # Setting up a combo list
@@ -232,7 +267,7 @@ class MainWindow(QMainWindow):
         self.combo_box.setFont(font)
 
         # Creating a button
-        hydrant = QPushButton('Fire Hydrant Right', self)
+        hydrant = QPushButton('Fire Hydrant', self)
         hydrant.setFont(QFont('Castellar', 17))
         hydrant.setStyleSheet("QPushButton"
                               "{"
@@ -267,7 +302,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivateFireHydrant()
+            self.current_exercise = 5
+            self.getTarget()
 
     def Plank(self):
         # Setting up a combo list
@@ -315,7 +351,8 @@ class MainWindow(QMainWindow):
 
         elif text == "Exercise":
             self.hide()
-            self.ActivatePlank()
+            self.current_exercise = 6
+            self.getTarget()
 
     def SitUps(self):
         # Setting up a combo list
@@ -362,7 +399,9 @@ class MainWindow(QMainWindow):
             cv2.destroyAllWindows()
 
         elif text == "Exercise":
-            self.ActivateSitUps()
+            self.hide()
+            self.current_exercise = 7
+            self.getTarget()
 
     def displayCount(self, count, img, target):
         cv2.rectangle(img, (50, 60), (450, 80), (240, 240, 240), 70)
@@ -406,9 +445,10 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateDumbbell(self):
-        self.timer()
-        #cap = cv2.VideoCapture("Dataset/curls.mp4")
-        cap = cv2.VideoCapture(0)
+        print(self.target)
+        # self.timer()
+        cap = cv2.VideoCapture("Dataset/curls.mp4")
+        # cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -441,13 +481,10 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 5
-
-            if count == target:
+            self.displayCount(int(count), img, self.target)
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
-
-            self.displayCount(int(count), img, target)
 
             cv2.imshow("Dumbbell", img)
             cv2.waitKey(1)
@@ -481,7 +518,7 @@ class MainWindow(QMainWindow):
                 #angle_r = detector.findAngle(img, 24, 26, 28)
                 per_l = np.interp(angle_l, (165, 70), (0, 100))
                 #per_r = np.interp(angle_r, (165, 70), (0, 80))
-                print(angle_l, per_l)
+
 
                 # Checking count for squat
                 if round(angle_l) in range(150, 170):
@@ -494,12 +531,10 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 3
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
-            self.displayCount(int(count), img, str(target))
+            self.displayCount(int(count), img, str(self.target))
 
             cv2.imshow("Squats", img)
             cv2.waitKey(1)
@@ -510,9 +545,7 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivatePushUps(self):
-        #self.timer()
-        cap = cv2.VideoCapture(0)
-
+        cap = cv2.VideoCapture("Dataset/pushUps1.mp4")
         detector = pm.poseDetector()
 
         dir = 0
@@ -541,13 +574,11 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 5
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
 
-            self.displayCount(int(count), img, target)
+            self.displayCount(int(count), img, self.target)
 
             cv2.imshow("Push Ups", img)
             cv2.waitKey(1)
@@ -558,9 +589,8 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateButtBridge(self):
-        self.timer()
-        #cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/glute_bridge.mp4")
+        # cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
@@ -585,13 +615,11 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 5
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
 
-            self.displayCount(int(count), img, target)
+            self.displayCount(int(count), img, self.target)
 
             cv2.imshow("Butt Bridge", img)
             cv2.waitKey(1)
@@ -602,14 +630,12 @@ class MainWindow(QMainWindow):
         cv2.destroyAllWindows()
 
     def ActivateFireHydrant(self):
-        self.timer()
-        #cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("Dataset/fire_hydrant1.mp4")
+        # cap = cv2.VideoCapture(0)
 
         detector = pm.poseDetector()
         count = 0
         dir = 0
-        pTime = 0
         while True:
             success, img = cap.read()
             img = cv2.resize(img, (1900, 1000))
@@ -632,13 +658,11 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 10
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
 
-            self.displayCount(int(count), img, target)
+            self.displayCount(int(count), img, self.target)
 
             cv2.imshow("Fire Hydrant", img)
             cv2.waitKey(1)
@@ -679,12 +703,10 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 5
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
-            self.displayCount(int(count), img, target)
+            self.displayCount(int(count), img, self.target)
 
             cv2.imshow("Up/Down Plank", img)
             cv2.waitKey(1)
@@ -728,13 +750,11 @@ class MainWindow(QMainWindow):
                         count += 0.5
                         dir = 0
 
-            target = 5
-
-            if count == target:
+            if count == self.target:
                 win = po.Window()
                 cv2.waitKey(30000)
 
-            self.displayCount(int(count), img, target)
+            self.displayCount(int(count), img, self.target)
 
             cv2.imshow("SitUps", img)
             cv2.waitKey(1)

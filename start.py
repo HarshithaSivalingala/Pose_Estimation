@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLabel, QLineEdit
 import pose_module
 import Popup
 import menu as osScript
